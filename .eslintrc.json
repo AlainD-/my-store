@@ -20,7 +20,9 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/recommended--extra",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "prettier",
+        "plugin:prettier/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -38,6 +40,27 @@
             "prefix": "app",
             "style": "kebab-case"
           }
+        ],
+        "prettier/prettier": [
+          "error",
+          {
+            "printWidth": 100,
+            "tabWidth": 2,
+            "endOfLine": "auto",
+            "singleQuote": true,
+            "quoteProps": "consistent",
+            "trailingComma": "es5",
+            "arrowParens": "always",
+            "semi": true,
+            "overrides": [
+              {
+                "files": ["*.md", "*.json", "*.conf.js"],
+                "options": {
+                  "tabWidth": 2
+                }
+              }
+            ]
+          }
         ]
       }
     },
@@ -48,7 +71,32 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+        "@angular-eslint/template/conditional-complexity": [
+          "error", { "maxComplexity": 4 }
+        ],
+        "@angular-eslint/template/cyclomatic-complexity": [
+          "error", { "maxComplexity": 5 }
+        ],
+        "@angular-eslint/template/no-duplicate-attributes": "error",
+        "@angular-eslint/template/use-track-by-function": "error"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error", { "parser": "angular" }
+        ]
+      }
     }
   ]
 }

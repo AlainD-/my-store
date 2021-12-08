@@ -5,15 +5,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '404', component: NotFoundComponent },
-  {
-    path: '',
-    component: LayoutComponent
-  },
-  { path: '**', redirectTo: '/404' }
+  { path: '', component: LayoutComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

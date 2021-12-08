@@ -1,0 +1,15 @@
+# Ignore artifacts:
+build
+dist
+coverage
+.angular
+.vscode
+.angulardoc.json
+.eslintrc.json
+angular.json
+karma.conf.js
+src/index.html
+src/main.ts
+src/polyfills.ts
+src/test.ts
+tsconfig*.json
