@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "lint:fix": "npm run prettier:fix && ng lint",
+    "lint": "prettier --check . && ng lint",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },

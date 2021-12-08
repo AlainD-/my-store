@@ -4,12 +4,7 @@ import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    PrimeNgModule
-  ],
-  exports: [
-    PrimeNgModule
-  ]
+  imports: [CommonModule, PrimeNgModule],
+  exports: [PrimeNgModule],
 })
-export class CoreModule { }
+export class CoreModule {}

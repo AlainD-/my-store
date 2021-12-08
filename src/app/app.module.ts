@@ -10,20 +10,9 @@ import { LayoutModule } from './layout/layout.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule,
-    LayoutModule
-  ],
-  providers: [
-    MessageService
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, NotFoundComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule, LayoutModule],
+  providers: [MessageService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
