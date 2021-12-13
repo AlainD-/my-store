@@ -1,4 +1,13 @@
-<h1>PAGE NOT FOUND</h1>
-<p>The requested page does not exist (any more)</p>
-<p>Please try again your request, or go to the home page</p>
-<button pButton type="button" label="GO TO HOME PAGE" icon="pi pi-home"></button>
+<p-card header="PAGE NOT FOUND">
+  <p>The requested page does not exist (any more)</p>
+  <p>Please try again your request, or go to the home page</p>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="GO TO HOME PAGE"
+      icon="pi pi-home"
+      (click)="onNavigate()"
+    ></button>
+  </ng-template>
+</p-card>
