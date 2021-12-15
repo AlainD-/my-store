@@ -1,1 +1,68 @@
-<p-card></p-card>
+<form #form="ngForm" (ngSubmit)="onLogin()">
+  <p-card header="Login">
+    <div>
+      <div class="field grid">
+        <label for="email" class="col-12 mb-2 md:col-2 md:mb-0">
+          Email
+          <small class="p-error">*</small>
+        </label>
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="text"
+            id="email"
+            name="email"
+            [(ngModel)]="credentials.email"
+            #email="ngModel"
+            class="w-full p-inputtext-sm"
+            required
+          />
+        </div>
+        <ng-container *ngIf="email.invalid && (submitted || email.dirty || email.touched)">
+          <small
+            *ngIf="email.errors?.['required']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            email is required
+          </small>
+        </ng-container>
+      </div>
+      <div class="field grid">
+        <label for="password" class="col-12 mb-2 md:col-2 md:mb-0">
+          Password
+          <small class="p-error">*</small>
+        </label>
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="credentials.password"
+            #password="ngModel"
+            class="w-full p-inputtext-sm"
+            required
+          />
+        </div>
+        <ng-container *ngIf="password.invalid && (submitted || password.dirty || password.touched)">
+          <small
+            *ngIf="password.errors?.['required']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            password is required
+          </small>
+        </ng-container>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        type="submit"
+        label="Login"
+        icon="pi pi-sign-in"
+        class="p-button-success"
+      ></button>
+    </ng-template>
+  </p-card>
+</form>
