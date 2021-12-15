@@ -1,0 +1,16 @@
+$red: #dc3545; // bootstrap variable
+
+:host ::ng-deep .p-dialog-header {
+  background-color: $red !important;
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .p-dialog-content {
+  padding-top: 1rem;
+}
+
+:host ::ng-deep .p-dialog-footer {
+  border-top: 1px solid $red !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

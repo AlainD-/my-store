@@ -10,9 +10,22 @@
       shape="circle"
       [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
     ></p-avatar>
-    <button pButton label="Sign up" icon="pi pi-power-off" class="mr-2 p-button-success"></button>
-    <button pButton label="Sign in" icon="pi pi-power-off" class="mr-2"></button>
+    <button
+      pButton
+      label="Sign up"
+      icon="pi pi-user-plus"
+      class="mr-2 p-button-success"
+      (click)="onSignUp()"
+    ></button>
+    <button pButton label="Sign in" icon="pi pi-sign-in" class="mr-2" (click)="onSignIn()"></button>
     <button pButton label="Logout" icon="pi pi-power-off" class="mr-2"></button>
-    <button pButton label="Cart" icon="pi pi-shopping-cart"></button>
+    <p-button
+      label="Cart"
+      icon="pi pi-shopping-cart"
+      styleClass="p-button-warning"
+      badge="8"
+      badgeClass="p-badge-danger"
+      (onClick)="onCart()"
+    ></p-button>
   </ng-template>
 </p-menubar>

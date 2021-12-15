@@ -1,0 +1,169 @@
+<ng-template #registerForm>
+  <form #form="ngForm" (ngSubmit)="onRegister()">
+    <p-card header="Register">
+      <div>
+        <div class="field grid">
+          <label for="email" class="col-12 mb-2 md:col-2 md:mb-0">
+            Email
+            <small class="p-error">*</small>
+          </label>
+          <div class="col-12 md:col-10">
+            <input
+              pInputText
+              type="text"
+              id="email"
+              name="email"
+              [(ngModel)]="account.email"
+              #email="ngModel"
+              class="w-full p-inputtext-sm"
+              required
+              maxlength="255"
+            />
+          </div>
+          <ng-container *ngIf="email.invalid && (submitted || email.dirty || email.touched)">
+            <small
+              *ngIf="email.errors?.['required']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              email is required
+            </small>
+            <small
+              *ngIf="email.errors?.['maxlength']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              email cannot exceed 255 characters
+            </small>
+          </ng-container>
+        </div>
+        <div class="field grid">
+          <label for="firstName" class="col-12 mb-2 md:col-2 md:mb-0">
+            First name
+            <small class="p-error">*</small>
+          </label>
+          <div class="col-12 md:col-10">
+            <input
+              pInputText
+              type="text"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="account.firstName"
+              #firstName="ngModel"
+              class="w-full p-inputtext-sm"
+              required
+              maxlength="50"
+            />
+          </div>
+          <ng-container
+            *ngIf="firstName.invalid && (submitted || firstName.dirty || firstName.touched)"
+          >
+            <small
+              *ngIf="firstName.errors?.['required']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              first name is required
+            </small>
+            <small
+              *ngIf="firstName.errors?.['maxlength']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              first name cannot exceed 50 characters
+            </small>
+          </ng-container>
+        </div>
+        <div class="field grid">
+          <label for="lastName" class="col-12 mb-2 md:col-2 md:mb-0">
+            Last name
+            <small class="p-error">*</small>
+          </label>
+          <div class="col-12 md:col-10">
+            <input
+              pInputText
+              type="text"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="account.lastName"
+              #lastName="ngModel"
+              class="w-full p-inputtext-sm"
+              required
+              maxlength="100"
+            />
+          </div>
+          <ng-container
+            *ngIf="lastName.invalid && (submitted || lastName.dirty || lastName.touched)"
+          >
+            <small
+              *ngIf="lastName.errors?.['required']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              last name is required
+            </small>
+            <small
+              *ngIf="lastName.errors?.['maxlength']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              last name cannot exceed 100 characters
+            </small>
+          </ng-container>
+        </div>
+        <div class="field grid">
+          <label for="password" class="col-12 mb-2 md:col-2 md:mb-0">
+            Password
+            <small class="p-error">*</small>
+          </label>
+          <div class="col-12 md:col-10">
+            <input
+              pInputText
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="account.password"
+              #password="ngModel"
+              class="w-full p-inputtext-sm"
+              required
+              maxlength="255"
+            />
+          </div>
+          <ng-container
+            *ngIf="password.invalid && (submitted || password.dirty || password.touched)"
+          >
+            <small
+              *ngIf="password.errors?.['required']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              password is required
+            </small>
+            <small
+              *ngIf="password.errors?.['maxlength']"
+              class="p-error col-12 md:col-offset-2 md:col-10"
+            >
+              password cannot exceed 255 characters
+            </small>
+          </ng-container>
+        </div>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          type="submit"
+          label="Register"
+          icon="pi pi-user-plus"
+          class="p-button-success"
+        ></button>
+      </ng-template>
+    </p-card>
+  </form>
+</ng-template>
+
+<div *ngIf="createdAccount; else registerForm">
+  <p-messages severity="success">
+    <ng-template pTemplate>
+      <i class="pi pi-check p-message-icon"></i>
+      <span class="p-message-summary">Success</span>
+      <span class="p-message-detail">
+        The account for {{ createdAccount.fullName }} has successfully been created.
+        <a [routerLink]="['/login']">Sign in</a> now?
+      </span>
+    </ng-template>
+  </p-messages>
+</div>

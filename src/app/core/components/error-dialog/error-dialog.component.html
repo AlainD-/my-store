@@ -1,0 +1,25 @@
+<p-dialog
+  [(visible)]="isVisible"
+  showEffect="fade"
+  [modal]="true"
+  [closeOnEscape]="false"
+  [dismissableMask]="false"
+  [closable]="false"
+  [style]="{ width: '600px', minWidth: '200px' }"
+  [minY]="70"
+  [contentStyle]="{ 'max-height': '200px' }"
+  [baseZIndex]="10000"
+>
+  <ng-template pTemplate="header">
+    <span class="my-header">
+      <i class="pi pi-exclamation-circle" style="font-size: 1.2rem"></i>
+      Error
+    </span>
+  </ng-template>
+
+  <span>{{ message }}</span>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" class="p-button-danger" (click)="close()" label="OK"></button>
+  </ng-template>
+</p-dialog>

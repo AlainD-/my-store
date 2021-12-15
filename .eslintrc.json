@@ -76,7 +76,7 @@
           "error", { "maxComplexity": 4 }
         ],
         "@angular-eslint/template/cyclomatic-complexity": [
-          "error", { "maxComplexity": 5 }
+          "error", { "maxComplexity": 15 }
         ],
         "@angular-eslint/template/no-duplicate-attributes": "error",
         "@angular-eslint/template/use-track-by-function": "error"
