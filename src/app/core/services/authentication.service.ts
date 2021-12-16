@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SESSION_TOKEN } from '../constants/config.constants';
 import { RegistrationInput } from '../models/registration-input';
 import { User, UserI } from '../models/user';
 import { AuthResponse } from '../models/auth-response';
@@ -15,6 +16,14 @@ export class AuthenticationService {
   readonly currentUser$: Observable<User | null> = this.currentUser.asObservable();
 
   constructor(private http: HttpClient) {}
+
+  isLoggedIn(): boolean {
+    return this.currentUser.getValue() !== null;
+  }
+
+  isLoggedOut(): boolean {
+    return !this.isLoggedIn();
+  }
 
   login$(data: Credentials): Observable<AuthResponse> {
     return this.http
@@ -34,7 +43,7 @@ export class AuthenticationService {
   }
 
   private removeTokenSession(): void {
-    localStorage.removeItem('TS_TOKEN');
+    localStorage.removeItem(SESSION_TOKEN);
   }
 
   saveToken(token: string): void {
@@ -46,6 +55,6 @@ export class AuthenticationService {
   }
 
   private setTokenSession(token: string): void {
-    localStorage.setItem('TS_TOKEN', token);
+    localStorage.setItem(SESSION_TOKEN, token);
   }
 }

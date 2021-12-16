@@ -1,31 +1,58 @@
 <p-menubar [model]="items">
   <ng-template pTemplate="start">
-    <img src="assets/logo-name.svg" height="40" class="mr-2" alt="logo" />
+    <a [routerLink]="['/']">
+      <img src="assets/logo-name.svg" height="40" class="mr-2" alt="logo" />
+    </a>
   </ng-template>
   <ng-template pTemplate="end">
     <input pInputText type="text" placeholder="Search" class="mr-2" />
-    <p-avatar
-      icon="pi pi-user"
-      styleClass="mr-2"
-      shape="circle"
-      [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
-    ></p-avatar>
-    <button
-      pButton
-      label="Sign up"
-      icon="pi pi-user-plus"
-      class="mr-2 p-button-success"
-      (click)="onSignUp()"
-    ></button>
-    <button pButton label="Sign in" icon="pi pi-sign-in" class="mr-2" (click)="onSignIn()"></button>
-    <button pButton label="Logout" icon="pi pi-power-off" class="mr-2"></button>
-    <p-button
-      label="Cart"
-      icon="pi pi-shopping-cart"
-      styleClass="p-button-warning"
-      badge="8"
-      badgeClass="p-badge-danger"
-      (onClick)="onCart()"
-    ></p-button>
+    <ng-template #anonymous>
+      <button
+        pButton
+        label="Sign up"
+        icon="pi pi-user-plus"
+        class="mr-2 p-button-success"
+        (click)="onSignUp()"
+      ></button>
+      <button
+        pButton
+        label="Sign in"
+        icon="pi pi-sign-in"
+        class="mr-2"
+        (click)="onSignIn()"
+      ></button>
+    </ng-template>
+    <ng-container *ngIf="isLoggedIn(); else anonymous">
+      <ng-template #genericAvatar>
+        <p-avatar
+          icon="pi pi-user"
+          styleClass="mr-2"
+          shape="circle"
+          [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
+        ></p-avatar>
+      </ng-template>
+      <p-avatar
+        *ngIf="currentUser$ | async as user; else genericAvatar"
+        [label]="user.initials"
+        styleClass="mr-2"
+        shape="circle"
+        [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
+      ></p-avatar>
+      <button
+        pButton
+        label="Logout"
+        icon="pi pi-power-off"
+        class="mr-2"
+        (click)="onLogout()"
+      ></button>
+      <p-button
+        label="Cart"
+        icon="pi pi-shopping-cart"
+        styleClass="p-button-warning"
+        badge="8"
+        badgeClass="p-badge-danger"
+        (onClick)="onCart()"
+      ></p-button>
+    </ng-container>
   </ng-template>
 </p-menubar>
