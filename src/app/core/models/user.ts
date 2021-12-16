@@ -3,6 +3,7 @@ export interface UserI {
   email: string;
   firstName: string;
   lastName: string;
+  isAdmin: boolean | number;
 }
 
 export class User implements UserI {
@@ -10,12 +11,14 @@ export class User implements UserI {
   email: string;
   firstName: string;
   lastName: string;
+  isAdmin: boolean;
 
-  constructor({ id, email, firstName, lastName }: UserI) {
+  constructor({ id, email, firstName, lastName, isAdmin }: UserI) {
     this.id = id;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.isAdmin = typeof isAdmin === 'number' ? isAdmin === 1 : isAdmin;
   }
 
   get fullName(): string {
