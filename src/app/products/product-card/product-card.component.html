@@ -1,6 +1,6 @@
 <p-card
   [header]="product.name"
-  [subheader]="'' + product.categoryId"
+  [subheader]="product.categoryId | categoryName"
   styleClass="m-2 flex flex-column"
   [style]="{ width: '25rem' }"
   [routerLink]="['/products', product.id]"

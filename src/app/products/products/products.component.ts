@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.products$ = this.productService.getAll$();
+    this.products$ = this.productService.products$;
   }
 
   identifyProduct(_index: number, product: Product): number {
