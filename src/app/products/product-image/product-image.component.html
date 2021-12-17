@@ -1,0 +1,21 @@
+<div class="flex align-items-center justify-content-center">
+  <ng-template #noImage>
+    <div
+      [style]="{
+        height: heightStyle,
+        width: '100%',
+        minWidth: '10rem',
+        backgroundColor: 'var(--gray-200)',
+        margin: '1em',
+        padding: '1em'
+      }"
+    ></div>
+  </ng-template>
+  <img
+    *ngIf="imageUrl; else noImage"
+    [src]="imageUrl"
+    [height]="heightPx"
+    [style]="{ width: 'auto' }"
+    alt="product image"
+  />
+</div>
