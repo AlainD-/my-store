@@ -1,0 +1,35 @@
+<p-card
+  [header]="product.name"
+  [subheader]="'' + product.categoryId"
+  styleClass="m-2 flex flex-column"
+  [style]="{ width: '25rem' }"
+>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center justify-content-center">
+      <ng-template #noImage>
+        <div
+          [style]="{
+            height: '200px',
+            width: '100%',
+            backgroundColor: 'var(--gray-200)',
+            margin: '1em',
+            padding: '1em'
+          }"
+        ></div>
+      </ng-template>
+      <img
+        *ngIf="product.imageUrl; else noImage"
+        [src]="product.imageUrl"
+        height="200"
+        [style]="{ width: 'auto' }"
+        alt="product image"
+      />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="flex flex-column align-items-center justify-content-center">
+      <div>{{ product.price | currency }}</div>
+      <app-add-to-cart [productId]="product.id"></app-add-to-cart>
+    </div>
+  </ng-template>
+</p-card>

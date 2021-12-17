@@ -1,0 +1,11 @@
+<form *ngIf="isLoggedIn()" #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
+  <input
+    pInputText
+    type="number"
+    id="email"
+    name="email"
+    [(ngModel)]="quantity"
+    class="p-inputtext-sm"
+  />
+  <button pButton label="Add to cart"></button>
+</form>

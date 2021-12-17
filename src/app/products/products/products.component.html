@@ -1,4 +1,8 @@
-<p>products works!</p>
-<div *ngFor="let product of products$ | async; trackBy: identifyProduct">
-  <div>{{ product.id }} - {{ product.name }} - {{ product.price }}</div>
-</div>
+<p-card header="Products">
+  <div class="flex flex-wrap">
+    <app-product-card
+      *ngFor="let product of products$ | async; trackBy: identifyProduct"
+      [product]="product"
+    ></app-product-card>
+  </div>
+</p-card>
