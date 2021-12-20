@@ -10,12 +10,19 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpRequestInterceptor } from './core/interceptors/http-request.interceptor';
 import { LayoutModule } from './layout/layout.module';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotAuthorizedComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

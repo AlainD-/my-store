@@ -34,7 +34,7 @@ export class AuthenticationService {
 
   logout(): void {
     this.removeTokenSession();
-    this.currentUser.next(null);
+    this.setCurrentUser(null);
   }
 
   register$(data: RegistrationInput): Observable<User> {
