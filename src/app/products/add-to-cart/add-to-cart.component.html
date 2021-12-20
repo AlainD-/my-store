@@ -1,4 +1,4 @@
-<form *ngIf="isLoggedIn()" #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
+<form *appIsAuthenticated #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
   <input
     pInputText
     type="number"

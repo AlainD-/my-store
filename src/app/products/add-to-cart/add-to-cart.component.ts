@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { AuthenticationService } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -9,12 +8,6 @@ import { AuthenticationService } from '../../core/services/authentication.servic
 export class AddToCartComponent {
   @Input() productId!: number;
   quantity = 1;
-
-  constructor(private authenticationService: AuthenticationService) {}
-
-  isLoggedIn(): boolean {
-    return this.authenticationService.isLoggedIn();
-  }
 
   onAddToCart(): void {
     return;
