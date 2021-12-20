@@ -1,0 +1,12 @@
+<p-card
+  *ngIf="currentUser$ | async as user"
+  [header]="user.fullName"
+  [subheader]="user.isAdmin ? 'Administrator' : ''"
+>
+  <div class="flex flex-column">
+    <div><i class="pi pi-envelope"></i> {{ user.email }}</div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Edit profile"></button>
+  </ng-template>
+</p-card>

@@ -7,52 +7,19 @@
   <ng-template pTemplate="end">
     <input pInputText type="text" placeholder="Search" class="mr-2" />
     <ng-template #anonymous>
-      <button
-        pButton
+      <p-button
         label="Sign up"
         icon="pi pi-user-plus"
-        class="mr-2 p-button-success"
-        (click)="onSignUp()"
-      ></button>
-      <button
-        pButton
+        styleClass="mr-2 p-button-success"
+        [routerLink]="['/register']"
+      ></p-button>
+      <p-button
         label="Sign in"
         icon="pi pi-sign-in"
-        class="mr-2"
-        (click)="onSignIn()"
-      ></button>
-    </ng-template>
-    <ng-container *ngIf="isLoggedIn(); else anonymous">
-      <ng-template #genericAvatar>
-        <p-avatar
-          icon="pi pi-user"
-          styleClass="mr-2"
-          shape="circle"
-          [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
-        ></p-avatar>
-      </ng-template>
-      <p-avatar
-        *ngIf="currentUser$ | async as user; else genericAvatar"
-        [label]="user.initials"
         styleClass="mr-2"
-        shape="circle"
-        [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
-      ></p-avatar>
-      <button
-        pButton
-        label="Logout"
-        icon="pi pi-power-off"
-        class="mr-2"
-        (click)="onLogout()"
-      ></button>
-      <p-button
-        label="Cart"
-        icon="pi pi-shopping-cart"
-        styleClass="p-button-warning"
-        badge="8"
-        badgeClass="p-badge-danger"
-        (onClick)="onCart()"
+        [routerLink]="['/login']"
       ></p-button>
-    </ng-container>
+    </ng-template>
+    <app-current-user *ngIf="isLoggedIn(); else anonymous"></app-current-user>
   </ng-template>
 </p-menubar>

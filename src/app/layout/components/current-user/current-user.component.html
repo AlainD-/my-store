@@ -1,0 +1,27 @@
+<ng-template #genericAvatar>
+  <p-avatar
+    icon="pi pi-user"
+    styleClass="mr-2"
+    shape="circle"
+    [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
+  ></p-avatar>
+</ng-template>
+<ng-container *ngIf="currentUser$ | async as user; else genericAvatar">
+  <p-avatar
+    [label]="user.initials"
+    styleClass="mr-1"
+    shape="circle"
+    [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
+    (click)="menu.toggle($event)"
+  ></p-avatar>
+  <i class="pi pi-caret-down mr-2" (click)="menu.toggle($event)"></i>
+  <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+</ng-container>
+<p-button
+  label="Cart"
+  icon="pi pi-shopping-cart"
+  styleClass="p-button-warning"
+  badge="8"
+  badgeClass="p-badge-danger"
+  (onClick)="onCart()"
+></p-button>

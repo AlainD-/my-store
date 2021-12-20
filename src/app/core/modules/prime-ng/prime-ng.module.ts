@@ -6,9 +6,11 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -21,9 +23,11 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     DialogModule,
     InputTextModule,
+    MenuModule,
     MenubarModule,
     MessageModule,
     MessagesModule,
+    TagModule,
     ToastModule,
   ],
 })

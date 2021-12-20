@@ -1,1 +1,2 @@
 export const SESSION_TOKEN = 'MS_TOKEN';
+export const SESSION_CURRENT_USER = 'MS_CURRENT_USER';

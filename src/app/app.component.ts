@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from './core/services/category.service';
 import { NotificationService } from './core/services/notification.service';
 import { ProductService } from './core/services/product.service';
+import { AuthenticationService } from './core/services/authentication.service';
+import { SESSION_CURRENT_USER } from './core/constants/config.constants';
+import { User, UserI } from './core/models/user';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +18,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
+    this.initCurrentUser();
     this.initCategories();
     this.initProducts();
   }
@@ -38,6 +43,12 @@ export class AppComponent implements OnInit, OnDestroy {
         error: (error) => this.notificationService.notifyError(error),
       })
     );
+  }
+
+  private initCurrentUser(): void {
+    const storedUser: string | null = localStorage.getItem(SESSION_CURRENT_USER);
+    const user: User | null = storedUser ? new User(JSON.parse(storedUser) as UserI) : null;
+    this.authenticationService.setCurrentUser(user);
   }
 
   private initProducts(): void {
