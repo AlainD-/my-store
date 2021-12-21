@@ -21,7 +21,7 @@ export class CategoryService {
     return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 
-  getCategories(): Category[] {
+  stateGetCategories(): Category[] {
     return this.categories.getValue();
   }
 
@@ -29,7 +29,7 @@ export class CategoryService {
     return this.http.get<Category>(`${environment.apiUrl}/categories/${id}`);
   }
 
-  setCategories(categories: Category[]): void {
+  stateSetCategories(categories: Category[]): void {
     this.categories.next(categories);
   }
 }

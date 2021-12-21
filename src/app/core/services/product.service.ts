@@ -21,7 +21,7 @@ export class ProductService {
     return this.http.get<Product>(`${environment.apiUrl}/products/${id}`);
   }
 
-  getProducts(): Product[] {
+  stateGetProducts(): Product[] {
     return this.products.getValue();
   }
 
@@ -29,7 +29,7 @@ export class ProductService {
     return this.products.getValue().find(({ id }) => id === productId);
   }
 
-  setProducts(products: Product[]): void {
+  stateSetProducts(products: Product[]): void {
     this.products.next(products);
   }
 }

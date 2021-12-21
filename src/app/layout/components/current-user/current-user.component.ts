@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { map, Observable, of, Subscription, switchMap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { AuthenticationService } from '../../../core/services/authentication.service';
+import { OrderService } from '../../../core/services/order.service';
+import { Order } from '../../../core/models/order';
 import { User } from '../../../core/models/user';
 
 @Component({
@@ -13,12 +15,19 @@ import { User } from '../../../core/models/user';
 export class CurrentUserComponent implements OnInit, OnDestroy {
   currentUser$!: Observable<User | null>;
   menuItems!: MenuItem[];
+  activeOrder$!: Observable<Order | null>;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private orderService: OrderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.currentUser$ = this.authenticationService.currentUser$;
+    this.activeOrder$ = this.orderService.activeOrder$;
+    this.initActiveOrder();
     this.currentUser$.subscribe({
       next: (user) => {
         this.menuItems = [
@@ -50,6 +59,23 @@ export class CurrentUserComponent implements OnInit, OnDestroy {
         ],
       },
     ];
+  }
+
+  private initActiveOrder(): void {
+    if (!this.orderService.stateGetActiveOrder()) {
+      this.subscriptions.add(
+        this.authenticationService.currentUser$
+          .pipe(
+            switchMap((user) => (user ? this.orderService.getUserActiveOrders$(user) : of([]))),
+            map((orders) => (orders.length ? orders[0] : null))
+          )
+          .subscribe({
+            next: (order) => {
+              this.orderService.stateSetActiveOrder(order);
+            },
+          })
+      );
+    }
   }
 
   async onCart(): Promise<void> {

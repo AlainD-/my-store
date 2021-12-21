@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.categoryService.getAll$().subscribe({
         next: (categories) => {
-          this.categoryService.setCategories(categories);
+          this.categoryService.stateSetCategories(categories);
         },
         error: (error) => this.notificationService.notifyError(error),
       })
@@ -48,14 +48,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private initCurrentUser(): void {
     const storedUser: string | null = localStorage.getItem(SESSION_CURRENT_USER);
     const user: User | null = storedUser ? new User(JSON.parse(storedUser) as UserI) : null;
-    this.authenticationService.setCurrentUser(user);
+    this.authenticationService.stateSetCurrentUser(user);
   }
 
   private initProducts(): void {
     this.subscriptions.add(
       this.productService.getAll$().subscribe({
         next: (products) => {
-          this.productService.setProducts(products);
+          this.productService.stateSetProducts(products);
         },
         error: (error) => this.notificationService.notifyError(error),
       })

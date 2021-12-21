@@ -1,11 +1,25 @@
-<form *appIsAuthenticated #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
-  <input
-    pInputText
-    type="number"
-    id="email"
-    name="email"
-    [(ngModel)]="quantity"
-    class="p-inputtext-sm"
-  />
-  <button pButton label="Add to cart"></button>
-</form>
+<ng-template #addToCart>
+  <form *appIsAuthenticated #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
+    <input
+      pInputText
+      type="number"
+      id="email"
+      name="email"
+      [(ngModel)]="quantity"
+      class="p-inputtext-sm mb-2"
+      [disabled]="inProgress"
+    />
+    <button pButton type="submit" [label]="buttonLabel()" [disabled]="inProgress"></button>
+  </form>
+</ng-template>
+<ng-container *ngIf="inTheCart$ | async as item; else addToCart">
+  <div class="flex flex-column">
+    <p-message
+      *ngIf="item; else addToCart"
+      severity="info"
+      [text]="messageText(item)"
+      class="mb-2"
+    ></p-message>
+    <p-button label="View cart" [routerLink]="['/cart']" styleClass="p-button-warning"></p-button>
+  </div>
+</ng-container>

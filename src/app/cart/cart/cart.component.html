@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<p-card header="Your current cart">
+  <ng-container *ngIf="activeOrder$ | async as order">
+    <ul *ngFor="let item of order.items; trackBy: identifyOrderItem">
+      <li>
+        id: {{ item.id }}, product: {{ item.productId | productName }}, quantity:
+        {{ item.quantity }}
+      </li>
+    </ul>
+  </ng-container>
+</p-card>

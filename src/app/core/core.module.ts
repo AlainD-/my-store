@@ -5,9 +5,10 @@ import { ComponentsModule } from './components/components.module';
 import { CategoryNamePipe } from './pipes/category-name.pipe';
 import { IsAdminDirective } from './directives/is-admin.directive';
 import { IsAuthenticatedDirective } from './directives/is-authenticated.directive';
+import { ProductNamePipe } from './pipes/product-name.pipe';
 
 @NgModule({
-  declarations: [CategoryNamePipe, IsAdminDirective, IsAuthenticatedDirective],
+  declarations: [CategoryNamePipe, IsAdminDirective, IsAuthenticatedDirective, ProductNamePipe],
   imports: [CommonModule, PrimeNgModule, ComponentsModule],
   exports: [
     PrimeNgModule,
@@ -15,6 +16,7 @@ import { IsAuthenticatedDirective } from './directives/is-authenticated.directiv
     CategoryNamePipe,
     IsAdminDirective,
     IsAuthenticatedDirective,
+    ProductNamePipe,
   ],
 })
 export class CoreModule {}

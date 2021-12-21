@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authenticationService.login$(this.form.value as Credentials).subscribe({
           next: async ({ token, user }: AuthResponse) => {
             this.authenticationService.saveToken(token);
-            this.authenticationService.setCurrentUser(user);
+            this.authenticationService.stateSetCurrentUser(user);
             await this.router.navigate(['/products']);
           },
           error: (error: unknown) => {
