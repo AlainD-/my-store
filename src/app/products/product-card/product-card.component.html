@@ -3,10 +3,13 @@
   [subheader]="product.categoryId | categoryName"
   styleClass="m-2 flex flex-column"
   [style]="{ width: '25rem' }"
-  [routerLink]="['/products', product.id]"
 >
   <ng-template pTemplate="header">
-    <div class="flex align-items-center justify-content-center">
+    <div
+      class="flex align-items-center justify-content-center"
+      [routerLink]="['/products', product.id]"
+      [style]="{ cursor: 'pointer' }"
+    >
       <app-product-image [imageUrl]="product.imageUrl" [heightPx]="200"></app-product-image>
     </div>
   </ng-template>
@@ -14,10 +17,7 @@
     {{ product.price | currency }}
   </div>
   <ng-template pTemplate="footer">
-    <div
-      class="flex flex-column align-items-center justify-content-center"
-      (click)="$event.stopPropagation()"
-    >
+    <div class="flex flex-column align-items-center justify-content-center">
       <app-add-to-cart [productId]="product.id"></app-add-to-cart>
     </div>
   </ng-template>
