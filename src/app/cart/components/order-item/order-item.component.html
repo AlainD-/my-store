@@ -1,0 +1,31 @@
+<div class="flex" *ngIf="product">
+  <div>
+    <app-product-image [imageUrl]="product.imageUrl" [heightPx]="100"></app-product-image>
+  </div>
+  <div class="flex flex-column justify-content-center flex-wrap">
+    <div class="font-bold mb-2">{{ product.name }}</div>
+    <div class="flex align-items-center justify-content-center mb-2">
+      <div class="mr-2">{{ product.price | currency }}</div>
+      <div class="mr-2">x</div>
+      <input
+        pInputText
+        type="number"
+        id="quantity"
+        name="quantity"
+        [ngModel]="quantity"
+        (ngModelChange)="onQuantityChange($event)"
+        [disabled]="inProgress"
+        [min]="1"
+        class="mr-2 w-4rem"
+      />
+      <button
+        pButton
+        icon="pi pi-trash"
+        class="p-button-danger mr-2"
+        [disabled]="inProgress"
+        (click)="onRemove()"
+      ></button>
+    </div>
+    <div class="font-bold">{{ total() | currency }}</div>
+  </div>
+</div>

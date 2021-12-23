@@ -1,10 +1,20 @@
 <p-card header="Your current cart">
-  <ng-container *ngIf="activeOrder$ | async as order">
-    <ul *ngFor="let item of order.items; trackBy: identifyOrderItem">
-      <li>
-        id: {{ item.id }}, product: {{ item.productId | productName }}, quantity:
-        {{ item.quantity }}
-      </li>
-    </ul>
-  </ng-container>
+  <div class="flex" *ngIf="activeOrder$ | async as order">
+    <div class="flex flex-column mr-2">
+      <app-total-price></app-total-price>
+      <div class="mb-2">
+        <app-order-item
+          *ngFor="let item of order.items; trackBy: identifyOrderItem"
+          [item]="item"
+        ></app-order-item>
+      </div>
+      <app-total-price></app-total-price>
+    </div>
+    <div class="flex">
+      <form>
+        <div class="mb-2">...</div>
+        <button pButton type="submit" label="Submit"></button>
+      </form>
+    </div>
+  </div>
 </p-card>

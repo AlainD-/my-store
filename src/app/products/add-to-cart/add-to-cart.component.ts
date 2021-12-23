@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, switchMap, of, Observable, tap, map } from 'rxjs';
+import { Subscription, switchMap, of, Observable, tap, map, take } from 'rxjs';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { OrderItem } from '../../core/models/order-item';
@@ -72,7 +72,8 @@ export class AddToCartComponent implements OnInit, OnDestroy {
                     quantity: this.quantity,
                   })
                 : of(null)
-            )
+            ),
+            take(1)
           )
           .subscribe({
             next: (orderItem: OrderItem | null) => {
@@ -82,12 +83,10 @@ export class AddToCartComponent implements OnInit, OnDestroy {
                   'The product has successfully been added to the order'
                 );
               }
+              this.inProgress = false;
             },
             error: (error) => {
               this.notificationService.notifyError(error);
-              this.inProgress = false;
-            },
-            complete: () => {
               this.inProgress = false;
             },
           })

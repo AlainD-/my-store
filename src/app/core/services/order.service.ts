@@ -62,7 +62,7 @@ export class OrderService {
     order: Order,
     orderItem: OrderItem
   ): Observable<OrderItem> {
-    return this.http.post<OrderItem>(
+    return this.http.put<OrderItem>(
       `${environment.apiUrl}/users/${userId}/orders/${order.id}/items/${orderItem.id}`,
       orderItem
     );

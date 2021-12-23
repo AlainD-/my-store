@@ -3,11 +3,12 @@
     <input
       pInputText
       type="number"
-      id="email"
-      name="email"
+      id="quantity"
+      name="quantity"
       [(ngModel)]="quantity"
-      class="p-inputtext-sm mb-2"
+      class="p-inputtext-sm mb-2 w-4rem"
       [disabled]="inProgress"
+      [min]="1"
     />
     <button pButton type="submit" [label]="buttonLabel()" [disabled]="inProgress"></button>
   </form>

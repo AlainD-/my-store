@@ -8,16 +8,9 @@ import { ProductsComponent } from './products/products.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ProductComponent } from './product/product.component';
-import { ProductImageComponent } from './product-image/product-image.component';
 
 @NgModule({
-  declarations: [
-    ProductsComponent,
-    ProductCardComponent,
-    AddToCartComponent,
-    ProductComponent,
-    ProductImageComponent,
-  ],
+  declarations: [ProductsComponent, ProductCardComponent, AddToCartComponent, ProductComponent],
   imports: [CommonModule, CoreModule, FormsModule, ProductsRoutingModule],
 })
 export class ProductsModule {}
