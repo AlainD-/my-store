@@ -1,15 +1,23 @@
 <ng-template #addToCart>
   <form *appIsAuthenticated #form="ngForm" (ngSubmit)="onAddToCart()" class="flex flex-column">
-    <input
-      pInputText
-      type="number"
-      id="quantity"
+    <p-dropdown
+      inputId="quantity"
       name="quantity"
+      [options]="quantities"
       [(ngModel)]="quantity"
-      class="p-inputtext-sm mb-2 w-4rem"
+      placeholder="Select quantity"
+      [filter]="false"
+      [virtualScroll]="true"
+      [itemSize]="31"
       [disabled]="inProgress"
-      [min]="1"
-    />
+      class="mb-2"
+    >
+      <ng-template pTemplate="selectedItem">
+        <div *ngIf="quantity">
+          <div>Quantity: {{ quantity }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
     <button pButton type="submit" [label]="buttonLabel()" [disabled]="inProgress"></button>
   </form>
 </ng-template>
@@ -17,10 +25,10 @@
   <div class="flex flex-column">
     <p-message
       *ngIf="item; else addToCart"
-      severity="info"
+      severity="success"
       [text]="messageText(item)"
       class="mb-2"
     ></p-message>
-    <p-button label="View cart" [routerLink]="['/cart']" styleClass="p-button-warning"></p-button>
+    <p-button label="Go to cart" [routerLink]="['/cart']" styleClass="p-button-warning"></p-button>
   </div>
 </ng-container>

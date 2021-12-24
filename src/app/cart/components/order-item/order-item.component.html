@@ -7,21 +7,29 @@
     <div class="flex align-items-center justify-content-center mb-2">
       <div class="mr-2">{{ product.price | currency }}</div>
       <div class="mr-2">x</div>
-      <input
-        pInputText
-        type="number"
-        id="quantity"
+      <p-dropdown
+        inputId="quantity"
         name="quantity"
+        [options]="quantities"
         [ngModel]="quantity"
         (ngModelChange)="onQuantityChange($event)"
+        placeholder="Select quantity"
+        [filter]="false"
+        [virtualScroll]="true"
+        [itemSize]="31"
         [disabled]="inProgress"
-        [min]="1"
-        class="mr-2 w-4rem"
-      />
+        class="mr-2"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div *ngIf="quantity">
+            <div>Quantity: {{ quantity }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
       <button
         pButton
         icon="pi pi-trash"
-        class="p-button-danger mr-2"
+        class="p-button-secondary p-button-text mr-2"
         [disabled]="inProgress"
         (click)="onRemove()"
       ></button>

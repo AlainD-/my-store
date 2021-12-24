@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges,
+  SimpleChange,
+} from '@angular/core';
 import { of, Subscription, switchMap, take } from 'rxjs';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { NotificationService } from '../../../core/services/notification.service';
@@ -13,9 +21,10 @@ import { User } from '../../../core/models/user';
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.scss'],
 })
-export class OrderItemComponent implements OnInit, OnDestroy {
+export class OrderItemComponent implements OnInit, OnDestroy, OnChanges {
   @Input() item!: OrderItem;
   quantity!: number;
+  quantities: number[] = [];
   product!: Product | undefined;
   inProgress = false;
   private subscriptions: Subscription = new Subscription();
@@ -30,12 +39,20 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.product = this.productService.productInfo(this.item.productId);
     this.quantity = this.item.quantity;
+    for (let i = 1; i <= 100; i++) {
+      this.quantities.push(i);
+    }
   }
 
   ngOnDestroy(): void {
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const itemChange: SimpleChange = changes['item'];
+    this.quantity = (itemChange.currentValue as OrderItem).quantity;
   }
 
   onQuantityChange(quantity: number): void {

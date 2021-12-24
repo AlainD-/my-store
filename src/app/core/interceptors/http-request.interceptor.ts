@@ -10,14 +10,18 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { SESSION_TOKEN } from '../constants/config.constants';
-import { NO_HTTP_STATUS } from '../constants/error-codes.constants';
+import { NO_HTTP_STATUS, ERROR_UNAUTHORIZED } from '../constants/error-codes.constants';
+import { AuthenticationService } from '../services/authentication.service';
 import { NotificationService } from '../services/notification.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpRequestInterceptor implements HttpInterceptor {
-  constructor(private notificationService: NotificationService) {}
+  constructor(
+    private notificationService: NotificationService,
+    private authenticationService: AuthenticationService
+  ) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -39,6 +43,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
                 'or the server does not seems to be alive. ' +
                 'If the problem persists, please contact the support of the application.';
               this.notificationService.notifyErrorWithMessage(message);
+            } else if (error.status === ERROR_UNAUTHORIZED) {
+              this.authenticationService.logout();
             } else {
               this.notificationService.notifyError(error);
             }

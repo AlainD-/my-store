@@ -15,6 +15,7 @@ import { OrderService } from '../../core/services/order.service';
 export class AddToCartComponent implements OnInit, OnDestroy {
   @Input() productId!: number;
   quantity = 1;
+  quantities: number[] = [];
   inProgress = false;
   inTheCart$!: Observable<OrderItem | undefined>;
   private subscriptions: Subscription = new Subscription();
@@ -29,6 +30,9 @@ export class AddToCartComponent implements OnInit, OnDestroy {
     this.inTheCart$ = this.orderService.activeOrder$.pipe(
       map((order) => order?.items?.find((item) => item.productId === this.productId))
     );
+    for (let i = 1; i <= 100; i++) {
+      this.quantities.push(i);
+    }
   }
 
   ngOnDestroy(): void {

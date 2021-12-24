@@ -5,6 +5,7 @@ import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
@@ -22,6 +23,7 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     CardModule,
     DialogModule,
+    DropdownModule,
     InputTextModule,
     MenuModule,
     MenubarModule,
