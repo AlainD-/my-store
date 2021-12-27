@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   HttpRequest,
   HttpHandler,
@@ -20,7 +21,8 @@ import { NotificationService } from '../services/notification.service';
 export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(
     private notificationService: NotificationService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,7 +37,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       tap({
-        error: (error) => {
+        error: async (error) => {
           if (error instanceof HttpErrorResponse) {
             if (error.status === NO_HTTP_STATUS) {
               const message =
@@ -44,7 +46,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
                 'If the problem persists, please contact the support of the application.';
               this.notificationService.notifyErrorWithMessage(message);
             } else if (error.status === ERROR_UNAUTHORIZED) {
+              this.notificationService.notifyWarning('Your session has timed out.');
               this.authenticationService.logout();
+              await this.router.navigate(['/']);
             } else {
               this.notificationService.notifyError(error);
             }
