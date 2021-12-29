@@ -1,20 +1,103 @@
-<p-card header="Your current cart">
-  <div class="flex" *ngIf="activeOrder$ | async as order">
-    <div class="flex flex-column mr-2">
-      <app-total-price></app-total-price>
-      <div class="mb-2">
-        <app-order-item
-          *ngFor="let item of order.items; trackBy: identifyOrderItem"
-          [item]="item"
-        ></app-order-item>
+<ng-template #showCart>
+  <p-card header="Your current cart">
+    <ng-template #emptyCart>
+      <p>Your cart is currently empty.</p>
+      <p>
+        Why don't you
+        <a [routerLink]="['/products']" class="p-button-link">check our products</a>
+        and start adding items to your cart?
+      </p>
+    </ng-template>
+    <ng-container *ngIf="activeOrder$ | async as order; else emptyCart">
+      <div class="flex" *ngIf="order.items && order.items.length > 0; else emptyCart">
+        <div class="flex flex-column mr-4">
+          <app-total-price></app-total-price>
+          <div class="mb-2">
+            <app-order-item
+              *ngFor="let item of order.items; trackBy: identifyOrderItem"
+              [item]="item"
+            ></app-order-item>
+          </div>
+          <app-total-price></app-total-price>
+        </div>
+        <form *appIsAuthenticated #form="ngForm" (ngSubmit)="onSubmit()" class="flex flex-column">
+          <h3>Your shipping information</h3>
+          <div class="mb-2">
+            <div class="field grid">
+              <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">
+                Name
+                <small class="p-error">*</small>
+              </label>
+              <div class="col-12 md:col-10">
+                <input
+                  pInputText
+                  type="text"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="shipping.name"
+                  #name="ngModel"
+                  class="w-full p-inputtext-sm"
+                  required
+                />
+              </div>
+              <ng-container *ngIf="name.invalid && (submitted || name.dirty || name.touched)">
+                <small
+                  *ngIf="name.errors?.['required']"
+                  class="p-error col-12 md:col-offset-2 md:col-10"
+                >
+                  Name is required
+                </small>
+              </ng-container>
+            </div>
+            <div class="field grid">
+              <label for="address" class="col-12 mb-2 md:col-2 md:mb-0">
+                Address
+                <small class="p-error">*</small>
+              </label>
+              <div class="col-12 md:col-10">
+                <input
+                  pInputText
+                  type="text"
+                  id="address"
+                  name="address"
+                  [(ngModel)]="shipping.address"
+                  #address="ngModel"
+                  class="w-full p-inputtext-sm"
+                  required
+                />
+              </div>
+              <ng-container
+                *ngIf="address.invalid && (submitted || address.dirty || address.touched)"
+              >
+                <small
+                  *ngIf="address.errors?.['required']"
+                  class="p-error col-12 md:col-offset-2 md:col-10"
+                >
+                  Address is required
+                </small>
+              </ng-container>
+            </div>
+          </div>
+          <button pButton type="submit" label="Submit"></button>
+        </form>
       </div>
-      <app-total-price></app-total-price>
-    </div>
-    <div class="flex">
-      <form>
-        <div class="mb-2">...</div>
-        <button pButton type="submit" label="Submit"></button>
-      </form>
-    </div>
-  </div>
-</p-card>
+    </ng-container>
+  </p-card>
+</ng-template>
+
+<ng-container *ngIf="completedOrder; else showCart">
+  <p-card>
+    <p-messages severity="success">
+      <ng-template pTemplate>
+        <div class="flex flex-column">
+          <div class="flex mb-2">
+            <i class="pi pi-thumbs-up mr-2"></i>
+            <div><span class="font-bold">Congratulations</span> for your purchase!</div>
+          </div>
+          <div class="mb-2">You will receive an email with all the details of your order.</div>
+          <p-button label="Back to product list" [routerLink]="['/products']"></p-button>
+        </div>
+      </ng-template>
+    </p-messages>
+  </p-card>
+</ng-container>

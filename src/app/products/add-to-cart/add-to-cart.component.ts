@@ -41,6 +41,10 @@ export class AddToCartComponent implements OnInit, OnDestroy {
     }
   }
 
+  buttonIcon(): string {
+    return this.inProgress ? 'pi pi-spin pi-spinner' : '';
+  }
+
   buttonLabel(): string {
     return this.inProgress ? '...' : 'Add to cart';
   }

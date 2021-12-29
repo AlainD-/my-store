@@ -18,7 +18,13 @@
         </div>
       </ng-template>
     </p-dropdown>
-    <button pButton type="submit" [label]="buttonLabel()" [disabled]="inProgress"></button>
+    <button
+      pButton
+      type="submit"
+      [icon]="buttonIcon()"
+      [label]="buttonLabel()"
+      [disabled]="inProgress"
+    ></button>
   </form>
 </ng-template>
 <ng-container *ngIf="inTheCart$ | async as item; else addToCart">
