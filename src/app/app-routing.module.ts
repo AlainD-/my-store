@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IsAuthenticatedGuard } from './core/guards/is-authenticated.guard';
+import { IsAdminGuard } from './core/guards/is-admin.guard';
 
 const routes: Routes = [
   { path: 'not-found', component: NotFoundComponent },
@@ -29,6 +30,11 @@ const routes: Routes = [
         path: 'cart',
         canActivate: [IsAuthenticatedGuard],
         loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: 'admin',
+        canActivate: [IsAdminGuard],
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
       },
       { path: '', pathMatch: 'full', redirectTo: '/products' },
     ],

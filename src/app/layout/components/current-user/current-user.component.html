@@ -25,3 +25,15 @@
   badgeClass="p-badge-danger"
   (onClick)="onCart()"
 ></p-button>
+<ng-container *appIsAdmin>
+  <button
+    pButton
+    typye="button"
+    label="Settings"
+    icon="pi pi-caret-down"
+    iconPos="right"
+    class="p-button-secondary p-button-outlined ml-2"
+    (click)="adminMenu.toggle($event)"
+  ></button>
+  <p-menu #adminMenu [popup]="true" [model]="adminMenuItems"></p-menu>
+</ng-container>

@@ -15,6 +15,7 @@ import { User } from '../../../core/models/user';
 export class CurrentUserComponent implements OnInit, OnDestroy {
   currentUser$!: Observable<User | null>;
   menuItems!: MenuItem[];
+  adminMenuItems!: MenuItem[];
   activeOrder$!: Observable<Order | null>;
   private subscriptions: Subscription = new Subscription();
 
@@ -28,37 +29,13 @@ export class CurrentUserComponent implements OnInit, OnDestroy {
     this.currentUser$ = this.authenticationService.currentUser$;
     this.activeOrder$ = this.orderService.activeOrder$;
     this.initActiveOrder();
-    this.currentUser$.subscribe({
-      next: (user) => {
-        this.menuItems = [
-          {
-            label: user ? `Signed in as ${user.fullName}` : 'Signed in',
-            items: [
-              { label: 'Your profile', icon: 'pi pi-user', routerLink: ['/profile'] },
-              { label: 'Sign out', icon: 'pi pi-power-off', command: () => this.onLogout() },
-            ],
-          },
-        ];
-      },
-    });
+    this.initMenu();
   }
 
   ngOnDestroy(): void {
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
     }
-  }
-
-  getMenu({ fullName }: User): MenuItem[] {
-    return [
-      {
-        label: `Signed in as ${fullName}`,
-        items: [
-          { label: 'Your profile', icon: 'pi pi-user', routerLink: ['/profile'] },
-          { label: 'Sign out', icon: 'pi pi-power-off', command: () => this.onLogout() },
-        ],
-      },
-    ];
   }
 
   private initActiveOrder(): void {
@@ -76,6 +53,35 @@ export class CurrentUserComponent implements OnInit, OnDestroy {
           })
       );
     }
+  }
+
+  private initMenu(): void {
+    this.currentUser$.subscribe({
+      next: (user) => {
+        this.menuItems = [
+          {
+            label: user ? `Signed in as ${user.fullName}` : 'Signed in',
+            items: [
+              { label: 'Your profile', icon: 'pi pi-user', routerLink: ['/profile'] },
+              { label: 'Sign out', icon: 'pi pi-power-off', command: () => this.onLogout() },
+            ],
+          },
+        ];
+        this.adminMenuItems = user?.isAdmin
+          ? [
+              {
+                label: 'Administration',
+                items: [
+                  { label: 'Categories', routerLink: ['/admin/categories'] },
+                  { label: 'Products', routerLink: ['/admin/products'] },
+                  { label: 'Orders', routerLink: ['/admin/orders'] },
+                  { label: 'Users', routerLink: ['/admin/users'] },
+                ],
+              },
+            ]
+          : [];
+      },
+    });
   }
 
   async onCart(): Promise<void> {
