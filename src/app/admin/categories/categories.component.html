@@ -1,1 +1,102 @@
-<p>categories works!</p>
+<p-card header="Categories" subheader="Settings">
+  <p-table
+    #table
+    [value]="(categories$ | async) ?? []"
+    [(selection)]="selectedItems"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="['name']"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between">
+        List of Categories
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="globalFilter($event)" placeholder="Search" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id">
+          <div class="flex justify-content-between align-items-center">
+            ID
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="text" field="id" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="name">
+          <div class="flex justify-content-between align-items-center">
+            Name
+            <p-sortIcon field="name"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="text-align: left">
+          <button
+            *appIsAdmin
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            class="p-button-primary p-button-outlined p-button-rounded p-button-sm mr-2"
+            pTooltip="New"
+            tooltipPosition="top"
+          ></button>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr class="p-selectable-row">
+        <td><p-tableCheckbox [value]="category"></p-tableCheckbox></td>
+        <td>
+          <span class="p-column-title">ID</span>
+          {{ category.id }}
+        </td>
+        <td>
+          <span class="p-column-title">Name</span>
+          {{ category.name }}
+        </td>
+        <td style="text-align: left">
+          <ng-container *appIsAdmin>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-pencil"
+              class="p-button-secondary p-button-outlined p-button-rounded p-button-sm mr-2"
+              pTooltip="Edit"
+              tooltipPosition="left"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-danger p-button-outlined p-button-rounded p-button-sm"
+              pTooltip="Delete"
+            ></button>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No categories found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

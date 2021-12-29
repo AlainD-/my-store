@@ -11,6 +11,7 @@ import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 
@@ -29,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
     MenubarModule,
     MessageModule,
     MessagesModule,
+    TableModule,
     TagModule,
     ToastModule,
   ],
