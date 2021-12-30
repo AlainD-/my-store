@@ -17,19 +17,47 @@ export class CategoryService {
     return this.categories.getValue().find(({ id }) => id === categoryId);
   }
 
-  getAll$(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
+  create$(data: Partial<Category>): Observable<Category> {
+    return this.http.post<Category>(`${environment.apiUrl}/categories`, data);
   }
 
-  stateGetCategories(): Category[] {
-    return this.categories.getValue();
+  delete$(id: number): Observable<Category> {
+    return this.http.delete<Category>(`${environment.apiUrl}/categories/${id}`);
+  }
+
+  getAll$(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
   }
 
   getCategory$(id: number): Observable<Category> {
     return this.http.get<Category>(`${environment.apiUrl}/categories/${id}`);
   }
 
+  update$(id: number, data: Category): Observable<Category> {
+    return this.http.put<Category>(`${environment.apiUrl}/categories/${id}`, data);
+  }
+
+  stateAddCategory(category: Category): void {
+    this.stateSetCategories([...this.stateGetCategories(), category]);
+  }
+
+  stateGetCategories(): Category[] {
+    return this.categories.getValue();
+  }
+
+  stateRemoveCategory(category: Category): void {
+    this.stateSetCategories(this.stateGetCategories().filter((item) => item.id !== category.id));
+  }
+
   stateSetCategories(categories: Category[]): void {
     this.categories.next(categories);
+  }
+
+  stateUpdateCategory(category: Category): void {
+    this.stateSetCategories(
+      this.stateGetCategories().map((item) =>
+        item.id === category.id ? { ...item, ...category } : item
+      )
+    );
   }
 }

@@ -57,6 +57,7 @@
             class="p-button-primary p-button-outlined p-button-rounded p-button-sm mr-2"
             pTooltip="New"
             tooltipPosition="top"
+            (click)="onNew()"
           ></button>
         </th>
       </tr>
@@ -81,6 +82,7 @@
               class="p-button-secondary p-button-outlined p-button-rounded p-button-sm mr-2"
               pTooltip="Edit"
               tooltipPosition="left"
+              (click)="onEdit(category)"
             ></button>
             <button
               pButton
@@ -88,6 +90,7 @@
               icon="pi pi-trash"
               class="p-button-danger p-button-outlined p-button-rounded p-button-sm"
               pTooltip="Delete"
+              (click)="deleteItem($event, category.id)"
             ></button>
           </ng-container>
         </td>
@@ -100,3 +103,132 @@
     </ng-template>
   </p-table>
 </p-card>
+
+<p-dialog
+  header="New category"
+  [(visible)]="showNew"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onNewClose()"
+>
+  <form #formNew="ngForm" (ngSubmit)="create()">
+    <div class="field grid">
+      <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">
+        Name
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <input
+          pInputText
+          type="text"
+          name="name"
+          id="name"
+          [(ngModel)]="newItem.name"
+          #newName="ngModel"
+          maxlength="100"
+          class="w-full p-inputtext-sm"
+          required
+        />
+      </div>
+      <ng-container *ngIf="newName.invalid && (newSubmitted || newName.dirty || newName.touched)">
+        <small
+          *ngIf="newName.errors?.['required']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          name is required
+        </small>
+        <small
+          *ngIf="newName.errors?.['maxlength']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          name cannot exceed 100 characters
+        </small>
+      </ng-container>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      icon="pi pi-times"
+      (click)="onNewClose()"
+      label="Cancel"
+      class="p-button-text"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      icon="pi pi-check"
+      (click)="formNew.ngSubmit.emit()"
+      label="Create"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  [header]="'Editing category ID: ' + editedItem.id"
+  [(visible)]="showEdit"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onEditClose()"
+>
+  <form #formEdit="ngForm" (ngSubmit)="update()">
+    <div class="field grid">
+      <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">
+        Name
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <input
+          pInputText
+          type="text"
+          name="name"
+          id="name"
+          [(ngModel)]="editedItem.name"
+          #editedName="ngModel"
+          maxlength="100"
+          class="w-full p-inputtext-sm"
+          required
+        />
+      </div>
+      <ng-container
+        *ngIf="editedName.invalid && (editSubmitted || editedName.dirty || editedName.touched)"
+      >
+        <small
+          *ngIf="editedName.errors?.['required']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          name is required
+        </small>
+        <small
+          *ngIf="editedName.errors?.['maxlength']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          name cannot exceed 100 characters
+        </small>
+      </ng-container>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      icon="pi pi-times"
+      (click)="onEditClose()"
+      label="Cancel"
+      class="p-button-text"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      icon="pi pi-check"
+      (click)="formEdit.ngSubmit.emit()"
+      label="Update"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmPopup #deleteDialog></p-confirmPopup>
