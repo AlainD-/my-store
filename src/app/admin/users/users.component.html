@@ -1,1 +1,126 @@
-<p>users works!</p>
+<p-card header="Users" subheader="Settings">
+  <p-table
+    #table
+    [value]="(users$ | async) ?? []"
+    [(selection)]="selectedItems"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="['name']"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between">
+        List of Users
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="globalFilter($event)" placeholder="Search" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id">
+          <div class="flex justify-content-between align-items-center">
+            ID
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="text" field="id" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="firstName">
+          <div class="flex justify-content-between align-items-center">
+            First name
+            <p-sortIcon field="firstName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="firstName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="lastName">
+          <div class="flex justify-content-between align-items-center">
+            Last name
+            <p-sortIcon field="lastName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="lastName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="email">
+          <div class="flex justify-content-between align-items-center">
+            Email
+            <p-sortIcon field="email"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="email"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="isAdmin">
+          <div class="flex justify-content-between align-items-center">
+            Admin
+            <p-sortIcon field="isAdmin"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="isAdmin"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="text-align: left"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr class="p-selectable-row">
+        <td><p-tableCheckbox [value]="user"></p-tableCheckbox></td>
+        <td>
+          <span class="p-column-title">ID</span>
+          {{ user.id }}
+        </td>
+        <td>
+          <span class="p-column-title">First name</span>
+          {{ user.firstName }}
+        </td>
+        <td>
+          <span class="p-column-title">Last name</span>
+          {{ user.lastName }}
+        </td>
+        <td>
+          <span class="p-column-title">Email</span>
+          {{ user.email }}
+        </td>
+        <td>
+          <span class="p-column-title">Admin</span>
+          <p-tag *ngIf="user.isAdmin" value="Admin"></p-tag>
+        </td>
+        <td style="text-align: left">
+          <ng-container *appIsAdmin>
+            <app-delete-user [userId]="user.id"></app-delete-user>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No users found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

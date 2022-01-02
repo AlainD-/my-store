@@ -1,0 +1,21 @@
+<ng-template #currentUser>
+  <p-tag
+    value="That's you!"
+    [style]="{ 'background-color': 'var(--purple-500)', 'color': '#ffffff' }"
+    pTooltip="You cannot delete your own admin account!"
+    tooltipPosition="left"
+  ></p-tag>
+</ng-template>
+
+<ng-container *ngIf="!isCurrentUser(); else currentUser">
+  <button
+    pButton
+    type="button"
+    icon="pi pi-trash"
+    class="p-button-danger p-button-outlined p-button-rounded p-button-sm"
+    pTooltip="Delete"
+    (click)="deleteItem($event)"
+    [disabled]="isCurrentUser()"
+  ></button>
+  <p-confirmPopup #deleteDialog></p-confirmPopup>
+</ng-container>
