@@ -1,1 +1,129 @@
-<p>products works!</p>
+<p-card header="Products" subheader="Settings">
+  <p-table
+    #table
+    [value]="(products$ | async) ?? []"
+    [(selection)]="selectedItems"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="['name']"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between">
+        List of Products
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="globalFilter($event)" placeholder="Search" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id">
+          <div class="flex justify-content-between align-items-center">
+            ID
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="text" field="id" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="name">
+          <div class="flex justify-content-between align-items-center">
+            Name
+            <p-sortIcon field="name"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="categoryId">
+          <div class="flex justify-content-between align-items-center">
+            Category
+            <p-sortIcon field="categoryId"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="categoryId"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="price">
+          <div class="flex justify-content-between align-items-center">
+            Price
+            <p-sortIcon field="price"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="price"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="imageUrl">
+          <div class="flex justify-content-between align-items-center">
+            Picture
+            <p-sortIcon field="imageUrl"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="imageUrl"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="text-align: left">
+          <app-create-product></app-create-product>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr class="p-selectable-row">
+        <td><p-tableCheckbox [value]="product"></p-tableCheckbox></td>
+        <td>
+          <span class="p-column-title">ID</span>
+          {{ product.id }}
+        </td>
+        <td>
+          <span class="p-column-title">Name</span>
+          {{ product.name }}
+        </td>
+        <td>
+          <span class="p-column-title">Category</span>
+          {{ product.categoryId | categoryName }}
+        </td>
+        <td>
+          <span class="p-column-title">Price</span>
+          {{ product.price | currency }}
+        </td>
+        <td>
+          <span class="p-column-title">Picture</span>
+          <app-product-image [imageUrl]="product.imageUrl" [heightPx]="50"></app-product-image>
+        </td>
+        <td style="text-align: left">
+          <ng-container *appIsAdmin>
+            <app-edit-product [product]="product"></app-edit-product>
+            <app-delete-product [productId]="product.id"></app-delete-product>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No products found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

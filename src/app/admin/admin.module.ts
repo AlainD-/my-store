@@ -12,6 +12,9 @@ import { DeleteCategoryComponent } from './categories/components/delete-category
 import { EditCategoryComponent } from './categories/components/edit-category/edit-category.component';
 import { CreateCategoryComponent } from './categories/components/create-category/create-category.component';
 import { DeleteUserComponent } from './users/components/delete-user/delete-user.component';
+import { DeleteProductComponent } from './products/components/delete-product/delete-product.component';
+import { CreateProductComponent } from './products/components/create-product/create-product.component';
+import { EditProductComponent } from './products/components/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { DeleteUserComponent } from './users/components/delete-user/delete-user.
     EditCategoryComponent,
     CreateCategoryComponent,
     DeleteUserComponent,
+    DeleteProductComponent,
+    CreateProductComponent,
+    EditProductComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, CoreModule, FormsModule],
 })

@@ -1,0 +1,141 @@
+<button
+  *appIsAdmin
+  pButton
+  type="button"
+  icon="pi pi-plus"
+  class="p-button-primary p-button-outlined p-button-rounded p-button-sm mr-2"
+  pTooltip="New"
+  tooltipPosition="top"
+  (click)="onNew()"
+></button>
+
+<p-dialog
+  header="New product"
+  [(visible)]="showDialog"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onClose()"
+>
+  <form #form="ngForm" (ngSubmit)="create()">
+    <div class="field grid">
+      <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">
+        Name
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <input
+          pInputText
+          type="text"
+          name="name"
+          id="name"
+          [(ngModel)]="newItem.name"
+          #name="ngModel"
+          maxlength="255"
+          class="w-full p-inputtext-sm"
+          required
+        />
+      </div>
+      <ng-container *ngIf="name.invalid && (submitted || name.dirty || name.touched)">
+        <small *ngIf="name.errors?.['required']" class="p-error col-12 md:col-offset-2 md:col-10">
+          name is required
+        </small>
+        <small *ngIf="name.errors?.['maxlength']" class="p-error col-12 md:col-offset-2 md:col-10">
+          name cannot exceed 255 characters
+        </small>
+      </ng-container>
+    </div>
+
+    <div class="field grid">
+      <label for="price" class="col-12 mb-2 md:col-2 md:mb-0">
+        Price
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <input
+          pInputText
+          type="number"
+          name="price"
+          id="price"
+          [(ngModel)]="newItem.price"
+          #price="ngModel"
+          class="w-full p-inputtext-sm"
+          required
+        />
+      </div>
+      <ng-container *ngIf="price.invalid && (submitted || price.dirty || price.touched)">
+        <small *ngIf="price.errors?.['required']" class="p-error col-12 md:col-offset-2 md:col-10">
+          price is required
+        </small>
+      </ng-container>
+    </div>
+
+    <div class="field grid">
+      <label for="categoryId" class="col-12 mb-2 md:col-2 md:mb-0">
+        Category
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <p-dropdown
+          inputId="categoryId"
+          name="categoryId"
+          [options]="(categories$ | async) ?? []"
+          [(ngModel)]="newItem.categoryId"
+          #categoryId="ngModel"
+          placeholder="Select category"
+          optionLabel="name"
+          optionValue="id"
+          [filter]="false"
+          [virtualScroll]="true"
+          [itemSize]="31"
+          styleClass="w-full p-inputtext-sm"
+          [required]="true"
+        ></p-dropdown>
+      </div>
+      <ng-container
+        *ngIf="categoryId.invalid && (submitted || categoryId.dirty || categoryId.touched)"
+      >
+        <small
+          *ngIf="categoryId.errors?.['required']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          category is required
+        </small>
+      </ng-container>
+    </div>
+
+    <div class="field grid">
+      <label for="imageUrl" class="col-12 mb-2 md:col-2 md:mb-0"> Picture </label>
+      <div class="col-12 md:col-10">
+        <input
+          pInputText
+          type="text"
+          name="imageUrl"
+          id="imageUrl"
+          [(ngModel)]="newItem.imageUrl"
+          #imageUrl="ngModel"
+          class="w-full p-inputtext-sm"
+        />
+      </div>
+      <app-product-image [imageUrl]="newItem.imageUrl" [heightPx]="100"></app-product-image>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      icon="pi pi-times"
+      (click)="onClose()"
+      label="Cancel"
+      class="p-button-text"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      icon="pi pi-check"
+      (click)="form.ngSubmit.emit()"
+      label="Create"
+    ></button>
+  </ng-template>
+</p-dialog>
