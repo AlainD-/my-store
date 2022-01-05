@@ -1,17 +1,23 @@
-<div *ngIf="product$ | async as product" class="flex">
-  <div class="align-items-center justify-content-center">
-    <app-product-image [imageUrl]="product.imageUrl" [heightPx]="200"></app-product-image>
+<p-card [style]="{ maxWidth: '46rem' }">
+  <div *ngIf="product$ | async as product" class="flex">
+    <div class="align-items-center justify-content-center">
+      <app-product-image
+        [imageUrl]="product.imageUrl"
+        [heightPx]="200"
+        [preview]="true"
+      ></app-product-image>
+    </div>
+    <div class="flex flex-column align-items-center justify-content-center">
+      <div class="p-card-title">{{ product.name }}</div>
+      <div class="p-card-subtitle">{{ product.categoryId | categoryName }}</div>
+      <div class="mb-2">{{ product.price | currency }}</div>
+      <app-add-to-cart [productId]="product.id"></app-add-to-cart>
+      <p-button
+        [routerLink]="['/products']"
+        label="Back to product list"
+        icon="pi pi-arrow-left"
+        styleClass="p-button-link"
+      ></p-button>
+    </div>
   </div>
-  <div class="flex flex-column align-items-center justify-content-center">
-    <h3>{{ product.name }}</h3>
-    <h4>{{ product.categoryId | categoryName }}</h4>
-    <div>{{ product.price | currency }}</div>
-    <app-add-to-cart [productId]="product.id"></app-add-to-cart>
-    <p-button
-      [routerLink]="['/products']"
-      label="Back to product list"
-      icon="pi pi-arrow-left"
-      styleClass="p-button-link"
-    ></p-button>
-  </div>
-</div>
+</p-card>

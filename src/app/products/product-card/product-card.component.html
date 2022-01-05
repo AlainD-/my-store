@@ -1,16 +1,29 @@
-<p-card
-  [header]="product.name"
-  [subheader]="product.categoryId | categoryName"
-  styleClass="m-2 flex flex-column"
-  [style]="{ width: '25rem' }"
->
+<p-card styleClass="m-2 flex flex-column" [style]="{ width: '25rem' }">
   <ng-template pTemplate="header">
     <div
       class="flex align-items-center justify-content-center"
       [routerLink]="['/products', product.id]"
       [style]="{ cursor: 'pointer' }"
     >
-      <app-product-image [imageUrl]="product.imageUrl" [heightPx]="200"></app-product-image>
+      <app-product-image
+        [imageUrl]="product.imageUrl"
+        [heightPx]="200"
+        [clickable]="true"
+      ></app-product-image>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="title">
+    <div
+      class="flex align-items-center justify-content-center"
+      [routerLink]="['/products', product.id]"
+      [style]="{ cursor: 'pointer' }"
+    >
+      {{ product.name }}
+    </div>
+  </ng-template>
+  <ng-template pTemplate="subtitle">
+    <div class="flex align-items-center justify-content-center">
+      {{ product.categoryId | categoryName }}
     </div>
   </ng-template>
   <div class="flex flex-column align-items-center justify-content-center">

@@ -48,17 +48,8 @@
             ></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="categoryId">
-          <div class="flex justify-content-between align-items-center">
-            Category
-            <p-sortIcon field="categoryId"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="categoryId"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
-          </div>
+        <th>
+          <div class="flex justify-content-between align-items-center">Picture</div>
         </th>
         <th pSortableColumn="price">
           <div class="flex justify-content-between align-items-center">
@@ -72,13 +63,13 @@
             ></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="imageUrl">
+        <th pSortableColumn="categoryId">
           <div class="flex justify-content-between align-items-center">
-            Picture
-            <p-sortIcon field="imageUrl"></p-sortIcon>
+            Category
+            <p-sortIcon field="categoryId"></p-sortIcon>
             <p-columnFilter
               type="text"
-              field="imageUrl"
+              field="categoryId"
               display="menu"
               class="ml-auto"
             ></p-columnFilter>
@@ -101,16 +92,20 @@
           {{ product.name }}
         </td>
         <td>
-          <span class="p-column-title">Category</span>
-          {{ product.categoryId | categoryName }}
+          <span class="p-column-title">Picture</span>
+          <app-product-image
+            [imageUrl]="product.imageUrl"
+            [heightPx]="50"
+            [preview]="true"
+          ></app-product-image>
         </td>
         <td>
           <span class="p-column-title">Price</span>
           {{ product.price | currency }}
         </td>
         <td>
-          <span class="p-column-title">Picture</span>
-          <app-product-image [imageUrl]="product.imageUrl" [heightPx]="50"></app-product-image>
+          <span class="p-column-title">Category</span>
+          {{ product.categoryId | categoryName }}
         </td>
         <td style="text-align: left">
           <ng-container *appIsAdmin>

@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
@@ -27,6 +28,7 @@ import { ToastModule } from 'primeng/toast';
     ConfirmPopupModule,
     DialogModule,
     DropdownModule,
+    ImageModule,
     InputTextModule,
     MenuModule,
     MenubarModule,

@@ -28,7 +28,7 @@
   </form>
 </ng-template>
 <ng-container *ngIf="inTheCart$ | async as item; else addToCart">
-  <div class="flex flex-column">
+  <div class="flex flex-column align-items-center">
     <p-message
       *ngIf="item; else addToCart"
       severity="success"

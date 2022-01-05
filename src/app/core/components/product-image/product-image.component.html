@@ -1,12 +1,13 @@
 <div class="flex align-items-center justify-content-center">
   <ng-template #noImage>
-    <div class="image-placeholder" [style]="{ height: heightStyle }"></div>
+    <div [class]="imageClass" [style]="{ height: heightStyle }"></div>
   </ng-template>
-  <img
+  <p-image
     *ngIf="imageUrl; else noImage"
     [src]="imageUrl"
-    [height]="heightPx"
-    class="image-product"
     alt="product image"
-  />
+    [height]="sHeightPx"
+    [imageClass]="imageClass"
+    [preview]="preview"
+  ></p-image>
 </div>
