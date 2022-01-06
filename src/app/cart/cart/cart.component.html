@@ -1,12 +1,21 @@
 <ng-template #showCart>
   <p-card header="Your current cart">
     <ng-template #emptyCart>
-      <p>Your cart is currently empty.</p>
-      <p>
-        Why don't you
-        <a [routerLink]="['/products']" class="p-button-link">check our products</a>
-        and start adding items to your cart?
-      </p>
+      <p-messages severity="info">
+        <ng-template pTemplate>
+          <div class="flex flex-column">
+            <div class="flex mb-2">
+              <i class="pi pi-thumbs-down mr-2"></i>
+              <div><span class="font-bold">Hooo...</span> Your cart is currently empty.</div>
+            </div>
+            <div class="mb-2">
+              Why don't you
+              <a [routerLink]="['/products']" class="p-button-link">check our products</a> and start
+              adding items to your cart?
+            </div>
+          </div>
+        </ng-template>
+      </p-messages>
     </ng-template>
     <ng-container *ngIf="activeOrder$ | async as order; else emptyCart">
       <div class="flex" *ngIf="order.items && order.items.length > 0; else emptyCart">
