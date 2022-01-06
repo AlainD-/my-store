@@ -1,12 +1,126 @@
-<p-card
-  *ngIf="currentUser$ | async as user"
-  [header]="user.fullName"
-  [subheader]="user.isAdmin ? 'Administrator' : ''"
->
-  <div class="flex flex-column">
-    <div><i class="pi pi-envelope"></i> {{ user.email }}</div>
-  </div>
-  <ng-template pTemplate="footer">
-    <button pButton type="button" label="Edit profile"></button>
+<ng-container *ngIf="currentUser$ | async as user">
+  <ng-template #showProfile>
+    <p-card [header]="user.fullName" [subheader]="user.isAdmin ? 'Administrator' : ''">
+      <div class="flex flex-column">
+        <div><i class="pi pi-envelope"></i> {{ user.email }}</div>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton type="button" label="Edit profile" (click)="onEditProfile(user)"></button>
+      </ng-template>
+    </p-card>
   </ng-template>
-</p-card>
+
+  <p-card *ngIf="isEditing; else showProfile" header="Updating Profile">
+    <form #form="ngForm" (ngSubmit)="onUpdate(user)">
+      <div class="field grid">
+        <label for="firstName" class="col-12 mb-2 md:col-2 md:mb-0">
+          First name
+          <small class="p-error">*</small>
+        </label>
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="text"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="profile.firstName"
+            #firstName="ngModel"
+            class="w-full p-inputtext-sm"
+            required
+            maxlength="50"
+          />
+        </div>
+        <ng-container
+          *ngIf="firstName.invalid && (submitted || firstName.dirty || firstName.touched)"
+        >
+          <small
+            *ngIf="firstName.errors?.['required']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            first name is required
+          </small>
+          <small
+            *ngIf="firstName.errors?.['maxlength']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            first name cannot exceed 50 characters
+          </small>
+        </ng-container>
+      </div>
+      <div class="field grid">
+        <label for="lastName" class="col-12 mb-2 md:col-2 md:mb-0">
+          Last name
+          <small class="p-error">*</small>
+        </label>
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="text"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="profile.lastName"
+            #lastName="ngModel"
+            class="w-full p-inputtext-sm"
+            required
+            maxlength="100"
+          />
+        </div>
+        <ng-container *ngIf="lastName.invalid && (submitted || lastName.dirty || lastName.touched)">
+          <small
+            *ngIf="lastName.errors?.['required']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            last name is required
+          </small>
+          <small
+            *ngIf="lastName.errors?.['maxlength']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            last name cannot exceed 100 characters
+          </small>
+        </ng-container>
+      </div>
+      <div class="field grid">
+        <label for="email" class="col-12 mb-2 md:col-2 md:mb-0">
+          Email
+          <small class="p-error">*</small>
+        </label>
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="text"
+            id="email"
+            name="email"
+            [(ngModel)]="profile.email"
+            #email="ngModel"
+            class="w-full p-inputtext-sm"
+            required
+            maxlength="255"
+          />
+        </div>
+        <ng-container *ngIf="email.invalid && (submitted || email.dirty || email.touched)">
+          <small
+            *ngIf="email.errors?.['required']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            email is required
+          </small>
+          <small
+            *ngIf="email.errors?.['maxlength']"
+            class="p-error col-12 md:col-offset-2 md:col-10"
+          >
+            email cannot exceed 255 characters
+          </small>
+        </ng-container>
+      </div>
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        class="p-button-text p-button-secondary"
+        (click)="resetEditing()"
+      ></button>
+      <button pButton type="submit" label="Update" class=""></button>
+    </form>
+  </p-card>
+</ng-container>

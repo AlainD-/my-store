@@ -27,13 +27,13 @@ export class UserService {
 
   getUser$(id: number): Observable<User> {
     return this.http
-      .get<UserI>(`${environment.apiUrl}/user/${id}`)
+      .get<UserI>(`${environment.apiUrl}/users/${id}`)
       .pipe(map((user) => new User(user)));
   }
 
-  update$(id: number, data: User): Observable<User> {
+  update$(id: number, data: UserI): Observable<User> {
     return this.http
-      .put<UserI>(`${environment.apiUrl}/user/${id}`, data)
+      .put<UserI>(`${environment.apiUrl}/users/${id}`, data)
       .pipe(map((user) => new User(user)));
   }
 
