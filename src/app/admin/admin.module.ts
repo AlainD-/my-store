@@ -15,6 +15,7 @@ import { DeleteUserComponent } from './users/components/delete-user/delete-user.
 import { DeleteProductComponent } from './products/components/delete-product/delete-product.component';
 import { CreateProductComponent } from './products/components/create-product/create-product.component';
 import { EditProductComponent } from './products/components/edit-product/edit-product.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditProductComponent } from './products/components/edit-product/edit-pr
     DeleteProductComponent,
     CreateProductComponent,
     EditProductComponent,
+    AdminComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, CoreModule, FormsModule],
 })

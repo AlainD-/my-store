@@ -6,6 +6,7 @@ import { ProductService } from '../services/product.service';
 export class ProductNamePipe implements PipeTransform {
   constructor(private productService: ProductService) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   transform(productId: number, ..._args: unknown[]): string {
     const product: Product | undefined = this.productService.productInfo(productId);
     return product?.name ?? `product-${productId}`;

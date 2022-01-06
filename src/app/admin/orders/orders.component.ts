@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Table } from 'primeng/table';
+import { OrderService } from '../../core/services/order.service';
+import { Order } from '../../core/models/order';
 
 @Component({
   selector: 'app-orders',
@@ -6,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-  constructor() {}
+  @ViewChild('table') table!: Table;
+  orders$!: Observable<Order[]>;
+  loading = false;
 
-  ngOnInit(): void {}
+  constructor(private orderService: OrderService) {}
+
+  ngOnInit(): void {
+    this.orders$ = this.orderService.getAll$();
+  }
+
+  globalFilter(event: Event): void {
+    this.table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
 }

@@ -6,9 +6,16 @@ import { CategoryNamePipe } from './pipes/category-name.pipe';
 import { IsAdminDirective } from './directives/is-admin.directive';
 import { IsAuthenticatedDirective } from './directives/is-authenticated.directive';
 import { ProductNamePipe } from './pipes/product-name.pipe';
+import { UserInfoPipe } from './pipes/user-info.pipe';
 
 @NgModule({
-  declarations: [CategoryNamePipe, IsAdminDirective, IsAuthenticatedDirective, ProductNamePipe],
+  declarations: [
+    CategoryNamePipe,
+    IsAdminDirective,
+    IsAuthenticatedDirective,
+    ProductNamePipe,
+    UserInfoPipe,
+  ],
   imports: [CommonModule, PrimeNgModule, ComponentsModule],
   exports: [
     PrimeNgModule,
@@ -17,6 +24,7 @@ import { ProductNamePipe } from './pipes/product-name.pipe';
     IsAdminDirective,
     IsAuthenticatedDirective,
     ProductNamePipe,
+    UserInfoPipe,
   ],
 })
 export class CoreModule {}
