@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 import { ComponentsModule } from './components/components.module';
 import { CategoryNamePipe } from './pipes/category-name.pipe';
@@ -16,9 +17,10 @@ import { UserInfoPipe } from './pipes/user-info.pipe';
     ProductNamePipe,
     UserInfoPipe,
   ],
-  imports: [CommonModule, PrimeNgModule, ComponentsModule],
+  imports: [CommonModule, PrimeNgModule, FontAwesomeModule, ComponentsModule],
   exports: [
     PrimeNgModule,
+    FontAwesomeModule,
     ComponentsModule,
     CategoryNamePipe,
     IsAdminDirective,

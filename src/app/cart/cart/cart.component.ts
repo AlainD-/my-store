@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faFrown } from '@fortawesome/free-regular-svg-icons';
 import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -19,6 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   submitted = false;
   completedOrder: Order | null = null;
   shipping: { name: string; address: string } = { name: '', address: '' };
+  faFaceFrown: IconDefinition = faFrown;
   private subscriptions: Subscription = new Subscription();
 
   constructor(
