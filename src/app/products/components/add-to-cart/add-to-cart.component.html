@@ -29,12 +29,9 @@
 </ng-template>
 <ng-container *ngIf="inTheCart$ | async as item; else addToCart">
   <div class="flex flex-column align-items-center">
-    <p-message
-      *ngIf="item; else addToCart"
-      severity="success"
-      [text]="messageText(item)"
-      class="mb-2"
-    ></p-message>
+    <div *ngIf="item; else addToCart" class="p-element mb-2">
+      <app-already-in-cart [quantity]="item.quantity"></app-already-in-cart>
+    </div>
     <p-button label="Go to cart" [routerLink]="['/cart']" styleClass="p-button-warning"></p-button>
   </div>
 </ng-container>

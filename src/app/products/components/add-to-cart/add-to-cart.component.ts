@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, switchMap, of, Observable, tap, map, take } from 'rxjs';
-import { AuthenticationService } from '../../core/services/authentication.service';
-import { NotificationService } from '../../core/services/notification.service';
-import { OrderItem } from '../../core/models/order-item';
-import { Order } from '../../core/models/order';
-import { User } from '../../core/models/user';
-import { OrderService } from '../../core/services/order.service';
+import { AuthenticationService } from '../../../core/services/authentication.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OrderItem } from '../../../core/models/order-item';
+import { Order } from '../../../core/models/order';
+import { User } from '../../../core/models/user';
+import { OrderService } from '../../../core/services/order.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -47,10 +47,6 @@ export class AddToCartComponent implements OnInit, OnDestroy {
 
   buttonLabel(): string {
     return this.inProgress ? '...' : 'Add to cart';
-  }
-
-  messageText({ quantity }: OrderItem): string {
-    return `${quantity} added to the cart`;
   }
 
   onAddToCart(): void {
