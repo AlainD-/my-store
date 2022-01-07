@@ -105,7 +105,7 @@
         </td>
         <td>
           <span class="p-column-title">Category</span>
-          {{ product.categoryId | categoryName }}
+          {{ product.categoryId | categoryInfo: 'name' }}
         </td>
         <td style="text-align: left">
           <ng-container *appIsAdmin>

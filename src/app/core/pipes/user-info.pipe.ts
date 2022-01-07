@@ -8,7 +8,7 @@ import { UserService } from '../services/user.service';
 export class UserInfoPipe implements PipeTransform {
   constructor(private userService: UserService) {}
 
-  transform(userId: number, prop: keyof User): unknown {
+  transform(userId: number, prop: keyof User): number | string | boolean {
     const user: User | undefined = this.userService.userInfo(userId);
     return user ? user[prop] : `user-${userId}`;
   }

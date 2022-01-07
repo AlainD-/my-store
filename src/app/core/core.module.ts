@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 import { ComponentsModule } from './components/components.module';
-import { CategoryNamePipe } from './pipes/category-name.pipe';
 import { IsAdminDirective } from './directives/is-admin.directive';
 import { IsAuthenticatedDirective } from './directives/is-authenticated.directive';
-import { ProductNamePipe } from './pipes/product-name.pipe';
+import { CategoryInfoPipe } from './pipes/category-info.pipe';
+import { ProductInfoPipe } from './pipes/product-info.pipe';
 import { UserInfoPipe } from './pipes/user-info.pipe';
 
 @NgModule({
   declarations: [
-    CategoryNamePipe,
+    CategoryInfoPipe,
     IsAdminDirective,
     IsAuthenticatedDirective,
-    ProductNamePipe,
+    ProductInfoPipe,
     UserInfoPipe,
   ],
   imports: [CommonModule, PrimeNgModule, FontAwesomeModule, ComponentsModule],
@@ -22,10 +22,10 @@ import { UserInfoPipe } from './pipes/user-info.pipe';
     PrimeNgModule,
     FontAwesomeModule,
     ComponentsModule,
-    CategoryNamePipe,
+    CategoryInfoPipe,
     IsAdminDirective,
     IsAuthenticatedDirective,
-    ProductNamePipe,
+    ProductInfoPipe,
     UserInfoPipe,
   ],
 })

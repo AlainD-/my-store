@@ -23,7 +23,7 @@
   </ng-template>
   <ng-template pTemplate="subtitle">
     <div class="flex align-items-center justify-content-center">
-      {{ product.categoryId | categoryName }}
+      {{ product.categoryId | categoryInfo: 'name' }}
     </div>
   </ng-template>
   <div class="flex flex-column align-items-center justify-content-center">
