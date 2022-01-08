@@ -2,9 +2,9 @@
   <div class="w-12rem mr-2">
     <app-product-image [imageUrl]="product.imageUrl" [heightPx]="100"></app-product-image>
   </div>
-  <div class="flex flex-column justify-content-center flex-wrap">
+  <div class="w-30rem flex flex-column justify-content-center flex-wrap">
     <div class="font-bold mb-2">{{ product.name }}</div>
-    <div class="flex align-items-center justify-content-center mb-2">
+    <div class="flex align-items-center justify-content-end mb-2">
       <div class="mr-2">{{ product.price | currency }}</div>
       <div class="mr-2">x</div>
       <p-dropdown
@@ -34,6 +34,6 @@
         (click)="onRemove()"
       ></button>
     </div>
-    <div class="font-bold">{{ total() | currency }}</div>
+    <div class="flex align-items-center justify-content-end font-bold">{{ total() | currency }}</div>
   </div>
 </div>

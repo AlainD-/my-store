@@ -1,0 +1,15 @@
+<p-messages severity="info">
+  <ng-template pTemplate>
+    <div class="flex flex-column">
+      <div class="flex mb-4">
+        <fa-icon [icon]="faFaceFrown" class="mr-2 text-xl"></fa-icon>
+        <div><span class="font-bold">Hooo...</span> Your cart is currently empty.</div>
+      </div>
+      <div class="">
+        Why don't you
+        <a [routerLink]="['/products']" class="p-button-link">check our products</a> and start
+        adding items to your cart?
+      </div>
+    </div>
+  </ng-template>
+</p-messages>
