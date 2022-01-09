@@ -12,7 +12,7 @@
       <div class="grid">
         <div class="col-12 sm:col-6 flex flex-column">
           <app-total-price></app-total-price>
-          <div class="mb-2">
+          <div class="mt-2 mb-4">
             <app-order-item
               *ngFor="let item of order.items; trackBy: identifyOrderItem"
               [item]="item"
