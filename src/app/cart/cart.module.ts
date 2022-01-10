@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { CoreModule } from '../core/core.module';
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart/cart.component';
@@ -12,7 +11,14 @@ import { OrderCompletedComponent } from './components/order-completed/order-comp
 import { SubmitCartFormComponent } from './components/submit-cart-form/submit-cart-form.component';
 
 @NgModule({
-  declarations: [CartComponent, OrderItemComponent, TotalPriceComponent, EmptyCartComponent, OrderCompletedComponent, SubmitCartFormComponent],
+  declarations: [
+    CartComponent,
+    OrderItemComponent,
+    TotalPriceComponent,
+    EmptyCartComponent,
+    OrderCompletedComponent,
+    SubmitCartFormComponent,
+  ],
   imports: [CommonModule, CoreModule, FormsModule, CartRoutingModule],
 })
 export class CartModule {}

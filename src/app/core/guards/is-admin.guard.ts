@@ -16,7 +16,9 @@ export class IsAdminGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
   canActivate(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _route: ActivatedRouteSnapshot,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authenticationService.currentUser$.pipe(
