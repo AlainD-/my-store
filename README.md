@@ -12,8 +12,12 @@ The most significant list of features are:
   * Registration and Login
   * Add a product to the shopping cart
   * Modify the quantity to buy
+  * Confirmation of the order
 * Permissions:
   * An administration section allows admin-users only to manage the list of categories, products, orders and registererd users
+* Routing:
+  * Routes
+  * Guards
 
 ## Getting started
 
@@ -47,12 +51,12 @@ export const environment = {
 
 ### Run
 
-You can start a local server of the application by running `npm start`.
+You can start a local server of the application by running `npm start` or `ng serve`.
 Navigate to `http://localhost:4200` in a browser to view it.
 
 ### Build
 
-Run `npm run build` to build the project for production. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build` or `ng build` to build the project for production. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
