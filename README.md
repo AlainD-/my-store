@@ -48,7 +48,7 @@ export const environment = {
 ### Run
 
 You can start a local server of the application by running `npm start`.
-Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+Navigate to `http://localhost:4200` in a browser to view it.
 
 ### Build
 
