@@ -6,18 +6,18 @@ MyStore is a light e-commerce like front-end application, built with Angular.
 
 The most significant list of features are:
 
-* View the list of products available in the store
-* View the details of a product
-* Authorization:
-  * Registration and Login
-  * Add a product to the shopping cart
-  * Modify the quantity to buy
-  * Confirmation of the order
-* Permissions:
-  * An administration section allows admin-users only to manage the list of categories, products, orders and registererd users
-* Routing:
-  * Routes
-  * Guards
+- View the list of products available in the store
+- View the details of a product
+- Authorization:
+  - Registration and Login
+  - Add a product to the shopping cart
+  - Modify the quantity to buy
+  - Confirmation of the order
+- Permissions:
+  - An administration section allows admin-users only to manage the list of categories, products, orders and registererd users
+- Routing:
+  - Routes
+  - Guards
 
 ## Getting started
 
@@ -35,8 +35,8 @@ Execute `npm install` or `npm i` from the root folder in order to install the re
 
 The url and port of the backend server is set in the files:
 
-* `src/environments/environment.ts` for the localhost development server
-* `src/environments/environment.prod.ts` for the production build
+- `src/environments/environment.ts` for the localhost development server
+- `src/environments/environment.prod.ts` for the production build
 
 Update the value of `apiUrl` according to your installation in the [Pre-requistes](https://github.com/AlainD-/my-store#pre-requisites-backend-server) above.
 
@@ -64,4 +64,4 @@ Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github
 
 ## Authors
 
-* **Alain D'EURVEILHER** - *Initial work* - [AlainD.](https://github.com/AlainD-)
+- **Alain D'EURVEILHER** - _Initial work_ - [AlainD.](https://github.com/AlainD-)
