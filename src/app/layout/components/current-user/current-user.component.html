@@ -21,7 +21,7 @@
   label="Cart"
   icon="pi pi-shopping-cart"
   styleClass="p-button-warning"
-  [badge]="'' + ((activeOrder$ | async)?.items?.length ?? '')"
+  [badge]="itemsInCart()"
   badgeClass="p-badge-danger"
   (onClick)="onCart()"
 ></p-button>

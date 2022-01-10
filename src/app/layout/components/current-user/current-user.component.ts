@@ -5,6 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { OrderService } from '../../../core/services/order.service';
 import { Order } from '../../../core/models/order';
+import { OrderItem } from '../../../core/models/order-item';
 import { User } from '../../../core/models/user';
 
 @Component({
@@ -82,6 +83,13 @@ export class CurrentUserComponent implements OnInit, OnDestroy {
           : [];
       },
     });
+  }
+
+  itemsInCart(): string {
+    const items: OrderItem[] = this.orderService.stateGetActiveOrder()?.items ?? [];
+    const quantities = items.map(({ quantity }) => quantity);
+    const nb: number = quantities.reduce((a, b) => a + b, 0);
+    return nb ? `${nb}` : '';
   }
 
   async onCart(): Promise<void> {
