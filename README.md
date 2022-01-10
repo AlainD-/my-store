@@ -1,6 +1,6 @@
-![MyStore](https://raw.githubusercontent.com/AlainD-/my-store/master/src/assets/logo-name.svg)
-
 # MyStore
+
+![MyStore](https://raw.githubusercontent.com/AlainD-/my-store/master/src/assets/logo-name.svg)
 
 MyStore is a light e-commerce like front-end application, built with Angular.
 
