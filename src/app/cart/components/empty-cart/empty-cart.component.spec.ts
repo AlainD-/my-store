@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MessagesModule } from 'primeng/messages';
 import { EmptyCartComponent } from './empty-cart.component';
 
 describe('EmptyCartComponent', () => {
@@ -9,6 +9,7 @@ describe('EmptyCartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EmptyCartComponent],
+      imports: [MessagesModule],
     }).compileComponents();
   });
 

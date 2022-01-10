@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MessagesModule } from 'primeng/messages';
 import { OrderCompletedComponent } from './order-completed.component';
 
 describe('OrderCompletedComponent', () => {
@@ -9,6 +9,7 @@ describe('OrderCompletedComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [OrderCompletedComponent],
+      imports: [MessagesModule],
     }).compileComponents();
   });
 

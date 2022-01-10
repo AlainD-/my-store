@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ImageModule } from 'primeng/image';
 import { ProductImageComponent } from './product-image.component';
 
 describe('ProductImageComponent', () => {
@@ -9,6 +9,7 @@ describe('ProductImageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProductImageComponent],
+      imports: [ImageModule],
     }).compileComponents();
   });
 

@@ -1,6 +1,31 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LayoutComponent } from './layout.component';
+
+@Component({
+  selector: 'app-header',
+})
+class MockHeaderComponent {}
+
+@Component({
+  selector: 'app-main',
+})
+class MockMainComponent {}
+
+@Component({
+  selector: 'app-footer',
+})
+class MockFooterComponent {}
+
+@Component({
+  selector: 'app-error-dialog',
+})
+class MockErrorDialogComponent {}
+
+@Component({
+  selector: 'app-notification-toast',
+})
+class MockNotificationToastComponent {}
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -8,7 +33,14 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LayoutComponent],
+      declarations: [
+        LayoutComponent,
+        MockHeaderComponent,
+        MockMainComponent,
+        MockFooterComponent,
+        MockErrorDialogComponent,
+        MockNotificationToastComponent,
+      ],
     }).compileComponents();
   });
 

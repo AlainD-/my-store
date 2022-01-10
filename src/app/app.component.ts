@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { SESSION_CURRENT_USER } from './core/constants/config.constants';
+import { User, UserI } from './core/models/user';
+import { AuthenticationService } from './core/services/authentication.service';
 import { CategoryService } from './core/services/category.service';
 import { NotificationService } from './core/services/notification.service';
 import { ProductService } from './core/services/product.service';
-import { AuthenticationService } from './core/services/authentication.service';
-import { SESSION_CURRENT_USER } from './core/constants/config.constants';
-import { User, UserI } from './core/models/user';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +16,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
   constructor(
+    private authenticationService: AuthenticationService,
     private categoryService: CategoryService,
-    private productService: ProductService,
     private notificationService: NotificationService,
-    private authenticationService: AuthenticationService
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
