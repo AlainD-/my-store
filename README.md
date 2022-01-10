@@ -1,27 +1,45 @@
+![MyStore](https://raw.githubusercontent.com/AlainD-/my-store/master/src/assets/logo-name.svg)
+
 # MyStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+MyStore is a light e-commerce like front-end application, built with Angular.
 
-## Development server
+The most significant list of features are:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* View the list of products available in the store
+* View the details of a product
+* Authorization:
+  * Registration and Login
+  * Add a product to the shopping cart
+  * Modify the quantity to buy
+* Permissions:
+  * An administration section allows admin-users only to manage the list of categories, products, orders and registererd users
 
-## Code scaffolding
+## Getting started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Pre-requiresites: Backend server
 
-## Build
+This application has been developped to be working with the backend [StoreFront API](https://github.com/AlainD-/storefront-api).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Please refer to its [installation instructions](https://github.com/AlainD-/storefront-api#installation) to have that server up and running before running MyStore.
+
+### Installation
+
+Execute `npm install` or `npm i` from the root folder in order to install the required packages.
+
+### Run
+
+You can start a local server of the application by running `npm start`.
+Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+
+### Build
+
+Run `npm run build` to build the project for production. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Authors
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* **Alain D'EURVEILHER** - *Initial work* - [AlainD.](https://github.com/AlainD-)
