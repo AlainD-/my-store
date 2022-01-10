@@ -17,7 +17,7 @@ The most significant list of features are:
 
 ## Getting started
 
-### Pre-requiresites: Backend server
+### Pre-requisites: Backend server
 
 This application has been developped to be working with the backend [StoreFront API](https://github.com/AlainD-/storefront-api).
 
@@ -26,6 +26,24 @@ Please refer to its [installation instructions](https://github.com/AlainD-/store
 ### Installation
 
 Execute `npm install` or `npm i` from the root folder in order to install the required packages.
+
+### Configuration
+
+The url and port of the backend server is set in the files:
+
+* `src/environments/environment.ts` for the localhost development server
+* `src/environments/environment.prod.ts` for the production build
+
+Update the value of `apiUrl` according to your installation in the [Pre-requistes](https://github.com/AlainD-/my-store#pre-requisites-backend-server) above.
+
+Example:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api/v1',
+};
+```
 
 ### Run
 
