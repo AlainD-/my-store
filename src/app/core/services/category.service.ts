@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { sortBy } from 'lodash/fp';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/category';
 
@@ -9,7 +10,9 @@ import { Category } from '../models/category';
 })
 export class CategoryService {
   private categories: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
-  readonly categories$: Observable<Category[]> = this.categories.asObservable();
+  readonly categories$: Observable<Category[]> = this.categories
+    .asObservable()
+    .pipe(map((items) => sortBy<Category>('name')(items)));
 
   constructor(private http: HttpClient) {}
 

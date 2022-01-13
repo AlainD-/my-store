@@ -9,6 +9,7 @@ import { AlreadyInCartComponent } from './components/already-in-cart/already-in-
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
+import { ProductsInCategoryComponent } from './components/products-in-category/products-in-category.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ProductComponent } from './product/product.component';
     AddToCartComponent,
     ProductComponent,
     AlreadyInCartComponent,
+    ProductsInCategoryComponent,
   ],
   imports: [CommonModule, CoreModule, FormsModule, ProductsRoutingModule],
 })

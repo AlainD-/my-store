@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,6 +14,7 @@ import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { ScrollTopModule } from 'primeng/scrolltop';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -27,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     ConfirmPopupModule,
     DialogModule,
+    DividerModule,
     DropdownModule,
     ImageModule,
     InputTextModule,
@@ -34,6 +37,7 @@ import { ToastModule } from 'primeng/toast';
     MenubarModule,
     MessageModule,
     MessagesModule,
+    ScrollTopModule,
     TableModule,
     TagModule,
     ToastModule,

@@ -1,0 +1,10 @@
+<div *ngIf="products.length > 0">
+  <h3>{{ category?.name }}</h3>
+  <p-divider></p-divider>
+  <div class="flex flex-wrap">
+    <app-product-card
+      *ngFor="let product of products; trackBy: identifyProduct"
+      [product]="product"
+    ></app-product-card>
+  </div>
+</div>

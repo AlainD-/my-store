@@ -1,8 +1,11 @@
 <p-card header="Products">
-  <div class="flex flex-wrap">
-    <app-product-card
-      *ngFor="let product of products$ | async; trackBy: identifyProduct"
-      [product]="product"
-    ></app-product-card>
-  </div>
+  <ng-container *ngIf="products$ | async as products">
+    <ng-container *ngFor="let category of categories$ | async; trackBy: identifyCategory">
+      <app-products-in-category
+        [category]="category"
+        [products]="categoryProducts(products, category.id)"
+      ></app-products-in-category>
+    </ng-container>
+    <p-scrollTop></p-scrollTop>
+  </ng-container>
 </p-card>
