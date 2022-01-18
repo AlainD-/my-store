@@ -3,7 +3,7 @@
   <div class="mb-2">
     <div class="field grid">
       <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">
-        Name
+        Full name
         <small class="p-error">*</small>
       </label>
       <div class="col-12 md:col-10">
@@ -47,6 +47,36 @@
           class="p-error col-12 md:col-offset-2 md:col-10"
         >
           Address is required
+        </small>
+      </ng-container>
+    </div>
+    <div class="field grid">
+      <label for="cardNumber" class="col-12 mb-2 md:col-2 md:mb-0">
+        Credit card number
+        <small class="p-error">*</small>
+      </label>
+      <div class="col-12 md:col-10">
+        <p-inputMask
+          inputId="cardNumber"
+          name="cardNumber"
+          [(ngModel)]="shipping.cardNumber"
+          #cardNumber="ngModel"
+          mask="999999999999?9999999"
+          slotChar=""
+          placeholder="(12-digit to 19-digit number)"
+          styleClass="w-full p-inputtext-sm"
+          [maxlength]="19"
+          [required]="true"
+        ></p-inputMask>
+      </div>
+      <ng-container
+        *ngIf="cardNumber.invalid && (submitted || cardNumber.dirty || cardNumber.touched)"
+      >
+        <small
+          *ngIf="cardNumber.errors?.['required']"
+          class="p-error col-12 md:col-offset-2 md:col-10"
+        >
+          Credit card number is required: a 12-digit to 19-digit number
         </small>
       </ng-container>
     </div>

@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { ImageModule } from 'primeng/image';
+import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
@@ -32,6 +33,7 @@ import { ToastModule } from 'primeng/toast';
     DividerModule,
     DropdownModule,
     ImageModule,
+    InputMaskModule,
     InputTextModule,
     MenuModule,
     MenubarModule,

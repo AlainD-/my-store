@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnDestroy, Output, EventEmitter, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Order } from '../../../core/models/order';
@@ -12,11 +12,11 @@ import { OrderService } from '../../../core/services/order.service';
   templateUrl: './submit-cart-form.component.html',
   styleUrls: ['./submit-cart-form.component.scss'],
 })
-export class SubmitCartFormComponent implements OnDestroy {
+export class SubmitCartFormComponent implements OnInit, OnDestroy {
   @Output() orderCompleted: EventEmitter<Order> = new EventEmitter<Order>();
   @ViewChild('form', { static: false }) form!: NgForm;
   submitted = false;
-  shipping: { name: string; address: string } = { name: '', address: '' };
+  shipping!: { name: string; address: string; cardNumber: string };
   private subscriptions: Subscription = new Subscription();
 
   constructor(
@@ -25,9 +25,25 @@ export class SubmitCartFormComponent implements OnDestroy {
     private orderService: OrderService
   ) {}
 
+  ngOnInit(): void {
+    this.resetForm();
+  }
+
   ngOnDestroy(): void {
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
+    }
+  }
+
+  private resetForm(): void {
+    this.shipping = {
+      name: '',
+      address: '',
+      cardNumber: '',
+    };
+    this.submitted = false;
+    if (this.form) {
+      this.form.reset();
     }
   }
 
