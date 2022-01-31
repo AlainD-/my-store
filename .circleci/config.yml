@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: 'cimg/base:stable'
+      - image: cimg/node:lts
     steps:
       - node/install
       - checkout
@@ -19,7 +19,7 @@ jobs:
           command: npm run build
   test:
     docker:
-      - image: 'cimg/base:stable'
+      - image: cimg/node:lts
     steps:
       - node/install
       - checkout
@@ -31,7 +31,7 @@ jobs:
           command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   lint:
     docker:
-      - image: 'cimg/base:stable'
+      - image: cimg/node:lts
     steps:
       - node/install
       - checkout
