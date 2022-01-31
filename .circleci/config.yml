@@ -27,6 +27,9 @@ jobs:
           name: Install Dependencies
           command: npm i
       - run:
+          name: Debug
+          command: which chrome
+      - run:
           name: Unit Tests
           command: npm run test:once
   lint:
