@@ -8,7 +8,7 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: cimg/node:lts-browsers
+      - image: cimg/node:lts
     steps:
       - node/install
       - checkout
@@ -22,6 +22,8 @@ jobs:
     docker:
       - image: cimg/node:lts-browsers
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - node/install
       - checkout
       - run:
@@ -32,7 +34,7 @@ jobs:
           command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   lint:
     docker:
-      - image: cimg/node:lts-browsers
+      - image: cimg/node:lts
     steps:
       - node/install
       - checkout
