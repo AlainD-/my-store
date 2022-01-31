@@ -28,7 +28,7 @@ jobs:
           command: npm i
       - run:
           name: Debug
-          command: which chrome
+          command: which google-chrome
       - run:
           name: Unit Tests
           command: npm run test:once
