@@ -28,7 +28,7 @@ jobs:
           command: npm i
       - run:
           name: Unit Tests
-          command: npm run test
+          command: npm run test:once
   lint:
     docker:
       - image: 'cimg/base:stable'
