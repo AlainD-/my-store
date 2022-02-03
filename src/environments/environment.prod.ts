@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3003/api/v1',
+  apiUrl: 'http://storefrontapi-env-1.eba-xpkyym8v.us-east-1.elasticbeanstalk.com/api/v1',
 };
