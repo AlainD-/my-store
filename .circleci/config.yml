@@ -59,9 +59,8 @@ jobs:
       - aws-s3/sync:
           from: bucket
           to: 's3://my-store-alaind/'
-          arguments:
-            --recursive \
-            ./dist/my-store
+          arguments: |
+            --recursive ./dist/my-store
           overwrite: true
 # Orchestrate our job run sequence
 workflows:
