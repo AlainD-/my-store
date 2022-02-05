@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "prettier --check . && ng lint",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "deploy": "aws s3 cp --recursive ./dist/my-store s3://my-store-alaind/"
   },
   "private": true,
   "dependencies": {
