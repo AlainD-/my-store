@@ -65,7 +65,7 @@ jobs:
           overwrite: true
 # Orchestrate our job run sequence
 workflows:
-  build_test-deploy:
+  build_test_deploy:
     jobs:
       - build
       - test
