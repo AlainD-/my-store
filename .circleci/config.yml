@@ -55,7 +55,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - checkout
       - aws-s3/copy:
           from: ./dist/my-store
           to: 's3://my-store-alaind/'
