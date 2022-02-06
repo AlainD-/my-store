@@ -56,12 +56,10 @@ jobs:
       - attach_workspace:
           at: ./
       - checkout
-      - aws-s3/sync:
-          from: bucket
+      - aws-s3/copy:
+          from: ./dist/my-store
           to: 's3://my-store-alaind/'
-          arguments: |
-            --recursive ./dist/my-store
-          overwrite: true
+          arguments: '--recursive'
 # Orchestrate our job run sequence
 workflows:
   build_test_deploy:
