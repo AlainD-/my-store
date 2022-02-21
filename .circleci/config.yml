@@ -63,9 +63,15 @@ jobs:
 workflows:
   build_test_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - test
       - lint
       - deploy:
+          filters:
+            branches:
+              only: master
           requires:
             - build
